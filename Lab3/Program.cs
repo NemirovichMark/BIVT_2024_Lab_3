@@ -21,23 +21,23 @@ public class Program
         // code here
         for (int i =0; i<array.Length; i++) 
         {
-            array[i] /= array.Sum();
+            array[i] = Math.Round(array[i]/array.Sum(),2);
         }
         Console.WriteLine($"\nSum: {array.Sum()}");
         // end
 
         return array;
     }
-    public double[] Task_1_2(double[] array)
+    public double[] Task_1_2(double[] array) // problem: srArif doesn't seem to be right in the second input of the test
     {
         // code here
         double amount=0, srArif=0;
-        foreach (double n in array) { if (n >= 0) { srArif += n;  amount++; } }
+        foreach (double n in array) { if (n > 0) { srArif += n;  amount++; } }
         srArif /= amount;
 
         for (int i=0; i<array.Length; i++)
         {
-            if (array[i] >= 0) { array[i] = srArif; }
+            if (array[i] > 0) { array[i] = srArif; }
         }
         // end
 
@@ -50,8 +50,8 @@ public class Program
         // code here
         for (int i = 0; i < first.Length; i++)
         {
-            sum[i] = first[i] + second[i];
-            dif[i] = first[i] - second[i];
+            sum[i] = Math.Round(first[i] + second[i],2);
+            dif[i] = Math.Round(first[i] - second[i],2);
         }
         // end
 
@@ -61,9 +61,9 @@ public class Program
     {
         // code here
         double srArif = array.Sum() / (double) array.Length;
-        for (int i=0; i<array.Length; i++)
+        for (int i = 0; i < array.Length; i++)
         {
-            array[i] -= srArif;
+            array[i] = Math.Round(array[i] - srArif, 2);
         }
         // end
 
@@ -78,6 +78,7 @@ public class Program
         {
             product += vector1[i] * vector2[i];
         }
+        product = Math.Round(product, 2);
         // end
 
         return product;
@@ -88,7 +89,7 @@ public class Program
 
         // code here
         foreach (double n in vector) { length += n*n; }
-        length = Math.Sqrt(length);
+        length = Math.Round(Math.Sqrt(length), 2);
         // end
 
         return Math.Round(length, 4); ;
@@ -147,7 +148,15 @@ public class Program
         double[] output = null;
 
         // code here
-        foreach (double n in array) { if (n>=0) { output += { n}; } }
+        output = new double[0];
+        foreach (double n in array) 
+        {
+            if (n > 0)
+            {
+                Array.Resize(ref output, output.Length + 1);
+                output[output.Length - 1] = n;
+            }
+        }
         // end
 
         return output;
@@ -158,7 +167,11 @@ public class Program
         int index = -1;
 
         // code here
-
+        index = array.Length - 1;
+        for (;index>=0;index--)
+        {
+            if (array[index] < 0) {  value = array[index]; break; }
+        }
         // end
 
         return (value, index);
@@ -168,8 +181,14 @@ public class Program
         double[] even = new double[array.Length / 2];
         double[] odd = new double[array.Length/2];
 
-        // code here
-
+        // code 
+        int i=0, k=0;
+        foreach (double n in array)
+        {
+            if (k%2!=0) { odd[i] = n; i++; } // when index is odd, we increment the even/odd arrays index
+            else even[i] = n;
+            k++;
+        }
         // end
 
         return (even, odd);
@@ -179,7 +198,11 @@ public class Program
         double sum = 0;
 
         // code here
-
+        foreach (double n in array)
+        {
+            if (n < 0) break;
+            else sum += n * n;
+        }
         // end
 
         return sum;
@@ -189,7 +212,13 @@ public class Program
         double[] y = new double[x.Length];
 
         // code here
+        Console.WriteLine($"x | y\n_____");
 
+        for (int i = 0; i < y.Length; i++)
+        {
+            y[i] = 0.5 * Math.Log10(x[i]);
+            Console.WriteLine($"{x[i]} | {y[i]}");
+        }
         // end
 
         return y;
@@ -200,7 +229,10 @@ public class Program
     public double[] Task_2_1(double[] array)
     {
         // code here
-
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] == array.Min()) { array[i] *= 2; break; }
+        }
         // end
 
         return array;
@@ -210,15 +242,23 @@ public class Program
         double sum = 0;
 
         // code here
-
+        for (int i =0; i<array.Length;i++)
+        {
+            if (array[i] == array.Max()) break;
+            else sum += array[i];
+        }
         // end
 
         return sum;
     }
-    public double[] Task_2_3(double[] array)
+    public double[] Task_2_3(double[] array) // problem: probably an error in test? -1 * 2 is not suppsed to be -0.5  
     {
         // code here
-
+        int k = Array.FindIndex(array, (x) => x == array.Min());
+        for (int i=0;i<k;i++)
+        {
+            array[i] *= 2;
+        }
         // end
 
         return array;
@@ -226,7 +266,12 @@ public class Program
     public double[] Task_2_4(double[] array)
     {
         // code here
-
+        int i = Array.FindIndex(array, (x) => x == array.Max()) + 1;
+        double srArif = Math.Round(array.Sum() / array.Length,2);
+        for (; i < array.Length; i++)
+        {
+            array[i] = srArif;
+        }
         // end
 
         return array;
