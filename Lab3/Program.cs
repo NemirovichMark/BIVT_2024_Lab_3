@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +19,11 @@ public class Program
     public double[] Task_1_1(double[] array)
     {
         // code here
-
+        for (int i =0; i<array.Length; i++) 
+        {
+            array[i] /= array.Sum();
+        }
+        Console.WriteLine($"\nSum: {array.Sum()}");
         // end
 
         return array;
@@ -27,7 +31,14 @@ public class Program
     public double[] Task_1_2(double[] array)
     {
         // code here
+        double amount=0, srArif=0;
+        foreach (double n in array) { if (n >= 0) { srArif += n;  amount++; } }
+        srArif /= amount;
 
+        for (int i=0; i<array.Length; i++)
+        {
+            if (array[i] >= 0) { array[i] = srArif; }
+        }
         // end
 
         return array;
@@ -37,7 +48,11 @@ public class Program
         double[] sum = new double[first.Length], dif = new double[first.Length];
 
         // code here
-
+        for (int i = 0; i < first.Length; i++)
+        {
+            sum[i] = first[i] + second[i];
+            dif[i] = first[i] - second[i];
+        }
         // end
 
         return (sum, dif);
@@ -45,7 +60,11 @@ public class Program
     public double[] Task_1_4(double[] array)
     {
         // code here
-
+        double srArif = array.Sum() / (double) array.Length;
+        for (int i=0; i<array.Length; i++)
+        {
+            array[i] -= srArif;
+        }
         // end
 
         return array;
@@ -55,7 +74,10 @@ public class Program
         double product = 0;
 
         // code here
-
+        for (int i=0; i<vector1.Length; i++)
+        {
+            product += vector1[i] * vector2[i];
+        }
         // end
 
         return product;
@@ -65,7 +87,8 @@ public class Program
         double length = 0;
 
         // code here
-
+        foreach (double n in vector) { length += n*n; }
+        length = Math.Sqrt(length);
         // end
 
         return Math.Round(length, 4); ;
@@ -73,7 +96,14 @@ public class Program
     public double[] Task_1_7(double[] array)
     {
         // code here
-
+        double srArif = array.Sum() / (double)array.Length;
+        for (int i=0; i<array.Length; i++)
+        {
+            if (array[i] > srArif)
+            {
+                array[i] = 0;
+            }
+        }
         // end
 
         return array;
@@ -83,7 +113,7 @@ public class Program
         int count = 0;
 
         // code here
-
+        foreach (double n in array) { if (n<0) count++; }
         // end
 
         return count;
@@ -93,7 +123,8 @@ public class Program
         int count = 0;
 
         // code here
-
+        double srArif = array.Sum() / array.Length;
+        foreach (double n in array) { if (n > srArif) count++; }
         // end
 
         return count;
@@ -103,7 +134,10 @@ public class Program
         int count = 0;
 
         // code here
-
+        foreach (double n in array)
+        {
+            if (n>P && n<Q) count++;
+        }
         // end
 
         return count;
@@ -113,7 +147,7 @@ public class Program
         double[] output = null;
 
         // code here
-
+        foreach (double n in array) { if (n>=0) { output += { n}; } }
         // end
 
         return output;
