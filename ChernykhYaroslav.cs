@@ -39,23 +39,37 @@ public class Program
         //program.Task_2_3(new double[] { 0, 1.5, -1, 3, -2.2, -0.5, 2 });
         //program.Task_2_4(new double[] { 0, 1.5, -1, 3, -2.2, -0.5, 2 });
         //program.Task_2_5(new double[] { 0, 1.5, -1, -3, -2.2, -0.5, 6 });
-        program.Task_2_6(new double[] { 0, 1.5, -1, -3, -2.2, -0.5, 6 }, 2.3);
-        //program.Task_2_7(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_2_6(new double[] { 0, 1.5, -1, -3, -2.2, -0.5, 6 }, 2.3);
+        //program.Task_2_7(new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 });
         //program.Task_2_8(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
-        //program.Task_2_9(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_2_9(new double[] { 0, 1.5, 4, 3, -2.2, -0.5, 2, -3.1 });
         //program.Task_2_10(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
-        //program.Task_2_11(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_2_11(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 }, 7.77);
         //program.Task_2_12(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
-        //program.Task_2_13(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_2_13(new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 });
         //program.Task_2_14(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
-        //program.Task_2_15(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_2_15(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 }, new double[] { 5, 2, 8, 1, 9, 10 }, 7);
         //program.Task_2_16(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
-        //program.Task_2_17(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_2_17(new double[] { 0, 1.5, 4, 3, -2.2, -0.5, 2, -3.1 });
         //program.Task_2_18(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
-        //program.Task_2_19(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_2_19(new double[] { -5, -2, -8, -1, -9, -3, -7, -4, -6, -2 });
         //program.Task_2_20(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
 
         //--------------------------LEVEL 3--------------------------\\
+        //program.Task_3_1(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_3_2(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        program.Task_3_3(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
+        //program.Task_3_4(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_3_5(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_3_6(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_3_7(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_3_8(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_3_9(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_3_10(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_3_11(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_3_12(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_3_13(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_3_14(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
 
     }
     #region Level 1
@@ -428,7 +442,19 @@ public class Program
     public double[] Task_2_7(double[] array)
     {
         // code here
+        double max = -999999;
+        int index = -1;
+        for (int i = 0; i < array.Length; i++){
+            if (array[i] > max) { max = array[i]; index = i; }
+        }
+        if (index+1 != array.Length)
+            if (array[index+1] > 0)
+                array[index+1] *= 2;
+            else
+                array[index+1] /= 2;
 
+        foreach (double x in array)
+            Console.Write(x + " ");
         // end
 
         return array;
@@ -446,7 +472,22 @@ public class Program
         double average = 0;
 
         // code here
+        int indexMax = -1, indexMin = -1, count = 0, swap = 0;
+        double max = -999999, min = -max;
 
+        for (int i = 0; i < array.Length; i++){
+            if (array[i] > max) { max = array[i]; indexMax = i; }
+            if (array[i] < min) { min = array[i]; indexMin = i; }
+        }
+        
+        if (indexMax < indexMin) { swap = indexMax; indexMax = indexMin; indexMin = swap; };
+        for (int i = indexMin+1; i < indexMax; i++){
+            average += array[i];
+            count++;
+        }
+        if (count == 0) return 0.0;
+        average = Math.Round(average / count, 2);
+        Console.Write(average);
         // end
 
         return average;
@@ -462,7 +503,46 @@ public class Program
     public double[] Task_2_11(double[] array, double P)
     {
         // code here
+        int index = -1;
 
+        //ищем последний +элемент
+        for (int i = 0; i < array.Length; i++)
+            if (array[i] > 0) index = i;
+
+        //создаём новый массив для чисел с длинной + 1
+        double[] numbers = new double[array.Length+1];
+
+        //перекопируем элементы до последнего положительного включительно
+        for(int i = 0; i <= index; i++)
+            numbers[i] = array[i];
+
+        //проверяем, существует ли этот положительный элемент
+        if (index == -1){
+            foreach (double x in array)
+                Console.Write(x + " ");
+            Console.WriteLine();
+            return array;
+        }
+
+        //проверяем, является ли он последним, чтобы не вылететь за рамки копирования в последующем шаге
+        if (index == array.Length){
+            numbers[index + 1] = P;
+            return numbers;
+        }
+
+        //вставляем элемент в нужное место
+        numbers[index + 1] = P;
+
+        //копируем оставщуюся часть
+        for (int i = index+2; i < numbers.Length; i++)
+            numbers[i] = array[i-1];
+
+        array = new double[numbers.Length];
+        array = numbers;
+
+        foreach(double x in array)
+            Console.Write(x + " ");
+        Console.WriteLine();
         // end
 
         return array;
@@ -478,9 +558,18 @@ public class Program
     public double[] Task_2_13(double[] array)
     {
         // code here
+        int index = -1;
+        double max = -999999;
+        for (int i = 0; i < array.Length; i++)
+            if (i % 2 == 0 && max < array[i]) { max = array[i]; index = i; }
 
+        if(max < 0){ array[0] = 0;  return array; }
+
+        array[index] = index;
+        foreach(double x in array)
+            Console.Write(x + " ");
+        Console.WriteLine();
         // end
-
         return array;
     }
     public double[] Task_2_14(double[] array)
@@ -496,7 +585,21 @@ public class Program
         double[] output = null;
 
         // code here
+        if (k > A.Length) return A;
+        output = new double[A.Length + B.Length];
+        for (int i = 0; i < k; i++){
+            output[i] = A[i];
+        }
+        for(int i = k, j = 0; i < B.Length+k; i++, j++){
+            output[i] = B[j];
+        }
+        for (int i = B.Length + k, j = k; i < B.Length + A.Length; i++, j++){
+            output[i] = A[j];
+        }
 
+        foreach(double x in output)
+            Console.Write(x + " ");
+        Console.WriteLine();
         // end
 
         return output;
@@ -516,7 +619,24 @@ public class Program
         double average = 0;
 
         // code here
+        int indexMax = -1, indexMin = -1;
+        double max = -999999, min = -max, count = 0, sum = 0;
 
+        for (int i = 0; i < array.Length; i++){
+            if (array[i] > max) { max = array[i]; indexMax = i; }
+            if (array[i] < min) { min = array[i]; indexMin = i; }
+        }
+        if (indexMax < indexMin){
+            for(int i = 0;i < array.Length;i++)
+                if(array[i] > 0) { sum += array[i]; count++;  }
+        }else{
+            for (int i = 0; i < array.Length; i++)
+                if (array[i] < 0) { sum += array[i]; count++; }
+            if (count == 0) return 0.0;
+        }
+
+        average = Math.Round(sum / count, 2);
+        Console.WriteLine(average);
         // end
 
         return average;
@@ -532,9 +652,18 @@ public class Program
     public double[] Task_2_19(double[] array)
     {
         // code here
-
+        int indexMax = -1;
+        double max = -999999, sum = 0;
+        for(int i = 0; i < array.Length; i++) {
+            if (array[i] > max) { max = array[i]; indexMax = i; }
+            sum += array[i];
+        }
+        if (array[indexMax] > sum) array[indexMax] = 0;
+        else array[indexMax] *= 2;
         // end
-
+        foreach(double x in array)
+            Console.Write(x + " ");
+        Console.WriteLine();
         return array;
     }
     public double Task_2_20(double[] array)
@@ -570,7 +699,17 @@ public class Program
     public double[] Task_3_3(double[] array)
     {
         // code here
+        double max = -999999, swap = 0;
+        int index = -1;
 
+        for(int i = 0; i < array.Length; i++){
+            if (array[i] > max) { max = array[i]; index = i; }
+        }
+        for(int i = 0; i < index; i+=2)
+            if(i+1 != index) { swap = array[i]; array[i] = array[i+1]; array[i + 1] = swap; }
+        foreach(double x in array)
+            Console.Write(x + " ");
+        Console.WriteLine();
         // end
 
         return array;
