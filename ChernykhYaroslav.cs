@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Metrics;
+using System.Globalization;
 using System.Linq.Expressions;
 using System.Numerics;
 using System.Runtime.InteropServices;
@@ -58,16 +59,16 @@ public class Program
         //--------------------------LEVEL 3--------------------------\\
         //program.Task_3_1(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_3_2(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
-        program.Task_3_3(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
+        //program.Task_3_3(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
         //program.Task_3_4(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_3_5(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
-        //program.Task_3_6(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_3_6(new double[] { 0, 1.5, 1, -1.3, -2.2, -0.5, 2 });
         //program.Task_3_7(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_3_8(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
-        //program.Task_3_9(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_3_9(new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 });
         //program.Task_3_10(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_3_11(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
-        //program.Task_3_12(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        program.Task_3_12(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
         //program.Task_3_13(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_3_14(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
 
@@ -324,7 +325,6 @@ public class Program
         return y;
     }
     #endregion
-
     #region Level 2
     public double[] Task_2_1(double[] array)
     {
@@ -735,7 +735,21 @@ public class Program
         int count = 0;
 
         // code here
-
+        int[] countArr = new int[5];
+        int max = 0;
+        for (int i = 0, j = 0; i < array.Length - 1; i++)
+            if (array[i] > array[i + 1]){
+                count++;
+            }
+            else{
+                countArr[j] = count + 1;
+                count = 0;
+                j++;
+            }
+        for (int i = 0; i < countArr.Length; i++)
+            if (countArr[i] > max) max = countArr[i];
+        count = max;
+        Console.WriteLine(max);
         // end
 
         return count;
@@ -761,7 +775,40 @@ public class Program
         int count = 0;
 
         // code here
+        int[] countLowerArr = new int[5];
+        int[] countUpperArr = new int[5];
+        int max = 0;
+        for (int i = 0, j = 0; i < array.Length-1; i++)
+            if (array[i] > array[i + 1]){
+                count++;
+                if (array[i] > array[i + 1] && i == array.Length - 2) { countUpperArr[j] = count + 1; count = 0; j++; }
+            }
+            else{
+                countLowerArr[j] = count + 1;
+                count = 0;
+                j++;
+            }
 
+        count = 0;
+
+        for (int i = 0, j = 0; i < array.Length - 1; i++)
+            if (array[i] < array[i + 1]) {
+                count++;
+                if(array[i] < array[i + 1] && i == array.Length - 2) {countUpperArr[j] = count + 1; count = 0; j++;}
+            }else{
+                countUpperArr[j] = count + 1;
+                count = 0;
+                j++;
+            }
+        Console.WriteLine($"-------{count}");
+        foreach (int i in countLowerArr)
+            if (i > max) max = i;
+        foreach (int i in countUpperArr)
+            if (i > max) max = i;
+
+        count = max;
+        foreach(int i in countUpperArr)
+            Console.WriteLine(i);
         // end
 
         return count;
@@ -788,7 +835,19 @@ public class Program
     public double[] Task_3_12(double[] array)
     {
         // code here
+        int count = 0;
+        foreach (double x in array)
+            if (x < 0) count++;
 
+        double[] numbers = new double[array.Length - count];
+        for (int i = 0, j = 0;i<array.Length; i++)
+            if (array[i] >= 0) { numbers[j] = array[i]; j++; }
+
+        array = new double[numbers.Length];
+        array = numbers;
+
+        foreach(double x in array)
+            Console.Write(x + " ");
         // end
 
         return array;
