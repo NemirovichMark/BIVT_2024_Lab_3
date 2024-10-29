@@ -267,7 +267,7 @@ public class Program
 
         return sum;
     }
-    public double[] Task_2_3(double[] array) // problem: probably an error in test? -1 * 2 is not suppsed to be -0.5  
+    public double[] Task_2_3(double[] array) 
     {
         // code here
         double min = double.MaxValue;
@@ -276,7 +276,8 @@ public class Program
         for (int i=0;i<array.Length;i++)
         {
             if (array[i] == min) break;
-            else array[i] *= 2;
+            else if (array[i] > 0) array[i] *= 2;
+            else array[i] /= 2;
         }
         // end
 
@@ -356,7 +357,7 @@ public class Program
 
         return array;
     }
-    public double[] Task_2_7(double[] array) // problem: in test the answer is value reduced by 2, not multiplied by 2
+    public double[] Task_2_7(double[] array) 
     {
         // code here
         double max = double.MinValue; int iMax = 0;
@@ -365,7 +366,11 @@ public class Program
             if (array[i] > max) { max = array[i]; iMax = i; } // compute maximal value
         }
 
-        if (iMax != array.Length - 1) array[iMax + 1] *= 2;
+        if (iMax != array.Length - 1)
+        {
+            if (array[iMax + 1]>0) array[iMax+1] *= 2;
+            else array[iMax + 1] /= 2;
+        }
         // end
 
         return array;
@@ -533,7 +538,7 @@ public class Program
 
         return array;
     }
-    public double[] Task_2_15(double[] A, double[] B, int k) // problem: tests don't confine to the task text, here B is inserted between k-1 and k, it's confusing
+    public double[] Task_2_15(double[] A, double[] B, int k) 
     {
         double[] output = null;
 
@@ -541,7 +546,7 @@ public class Program
         output = new double[A.Length + B.Length];
         for (int a = 0, b=0, n=0; a < A.Length; n++)
         {
-            if (a==k && b<B.Length)
+            if (a==k+1 && b<B.Length)
             {
                 output[n] = B[b];
                 b++;
@@ -556,15 +561,18 @@ public class Program
 
         return output;
     }
-    public int[] Task_2_16(double[] array) // problem: for some reason test function has an error that's not connected to the code here
+    public int[] Task_2_16(double[] array) 
     {
         int[] output = null;
 
         // code here
         double srArif = 0;
         foreach (var n in array) { srArif += n / array.Length; }
+        
+        int new_length = 0;
+        foreach (var n in array) { if (n < srArif) new_length++; }
+        output = new int[new_length];
 
-        output = new int[array.Length];
         for (int i = 0, k = 0; i < array.Length && k < array.Length; i++)
         {
             if (array[i] < srArif) { output[k] = i; k++; }
@@ -655,7 +663,7 @@ public class Program
 
         return array;
     }
-    public double Task_2_20(double[] array) // problem: sum is wrong in the second array of test (answer2)
+    public double Task_2_20(double[] array) 
     {
         double sum = 0;
 
@@ -668,15 +676,17 @@ public class Program
             if (!negFound && array[k] < 0) { negFound = true; iNeg = k; }
         }
 
-        int i;
-        if (iNeg < iMin) i = 0;
-        else i = 1;
-
-        for (; i < array.Length; i += 2)
+        if (negFound) // we only find the sum if a negative number is actually present in the array
         {
-            sum += array[i];
-        }
+            int i;
+            if (iNeg < iMin) i = 0;
+            else i = 1;
 
+            for (; i < array.Length; i += 2)
+            {
+                sum += array[i];
+            }
+        }
         // end
 
         return sum;
