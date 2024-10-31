@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Metrics;
@@ -13,7 +14,7 @@ public class Program
     public static void Main()
     {
         Program program = new Program();
-        program.Task_3_13(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
+        program.Task_3_13(new double[] { -1, -2, -8, -1, -9, -1, -1, -4, -6, -2 });
         //program.Task_1_15(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, 2, 3.1, -0.7 });
     }
     #region Level 1
@@ -562,6 +563,7 @@ public class Program
     {
         double otric = 0; double temp = 0;
         double max = -100000; int max_ind = 0; int otric_ind = 0; bool flag = false;
+
         // code here
         for (int i = 0; i < array.Length; i++)
         {
@@ -577,6 +579,9 @@ public class Program
                 otric_ind = i;
             }
         }
+
+        if (otric == 0) return array;
+
         Console.WriteLine($"{otric} and {max}");
         temp = array[max_ind];
         array[max_ind] = array[otric_ind];
@@ -936,11 +941,11 @@ public class Program
         {
             if (array[i] == temp)
             {
-                if (max != 1)
+                if (flag == false)
                 {
                     itog[temp_schet] = temp;
+                    flag = true;
                     temp_schet++;
-                    max--;
                 }
             }
             else
@@ -948,6 +953,10 @@ public class Program
                 itog[temp_schet] = array[i];
                 temp_schet++;
             }
+        }
+        for (int i = 0; i < itog.Length; i++)
+        {
+            Console.WriteLine(itog[i]);
         }
         // end
 
