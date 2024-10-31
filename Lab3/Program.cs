@@ -17,7 +17,7 @@ public class Program
     {
         Program program = new Program();
         //program.Task_1_1(new int[] {1, 2, 3, 4, 5, 6});
-        program.Task_3_8(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
+        //program.Task_3_8(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
     }
     #region Level 1
     public double[] Task_1_1(double[] array)
