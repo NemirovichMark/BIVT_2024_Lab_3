@@ -14,7 +14,7 @@ public class Program
     public static void Main()
     {
         Program program = new Program();
-        program.Task_3_13(new double[] { -1, -2, -8, -1, -9, -1, -1, -4, -6, -2 });
+        program.Task_3_13(new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 10, 10 });
         //program.Task_1_15(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, 2, 3.1, -0.7 });
     }
     #region Level 1
@@ -920,46 +920,42 @@ public class Program
     }
     public double[] Task_3_13(double[] array)
     {
-        int max = 0; double temp = 0; int schet = 0; bool flag = false; int temp_schet = 0;
+        bool flazhok = true;int schet_temp = 0; int schet_itog = 0;
+        double[] massiv = new double[array.Length]; 
         // code here
         for (int i = 0; i < array.Length; i++)
         {
-            schet = 0;
-            for (int g  = 0; g < array.Length; g++)
+            bool prov = true;
+            for (int j = 0; j < massiv.Length; j++)
             {
-                if (array[i] == array[g]) schet++;
-            }
-            if (schet > max)
-            {
-                temp = array[i];
-                max = schet;
-            }
-        }
-        Console.WriteLine($"{temp} and {max}");
-        double[] itog = new double[array.Length - max + 1];
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] == temp)
-            {
-                if (flag == false)
+                if (array[i] == massiv[j])
                 {
-                    itog[temp_schet] = temp;
-                    flag = true;
-                    temp_schet++;
+                    prov = false;
                 }
             }
-            else
+            if (prov == true)
             {
-                itog[temp_schet] = array[i];
-                temp_schet++;
+                massiv[i] = array[i];
             }
         }
-        for (int i = 0; i < itog.Length; i++)
+        for (int i = 0; i < massiv.Length; i++)
         {
-            Console.WriteLine(itog[i]);
+            if (massiv[i] == 0 && massiv[i] != array[i])
+            {
+                schet_temp++;
+            }
         }
-        // end
+        //Console.WriteLine(schet_temp);
+        double[] itog = new double[massiv.Length - schet_temp];
 
+        for (int i = 0; i < massiv.Length; i++)
+        {
+            if (massiv[i] == array[i])
+            {
+                itog[schet_itog] = massiv[i];
+                schet_itog++;
+            }
+        }
         return itog;
     }
     public double[] Task_3_14(double[] array)
