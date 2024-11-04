@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Metrics;
-using System.Globalization;
 using System.Linq.Expressions;
 using System.Numerics;
 using System.Runtime.InteropServices;
@@ -49,7 +48,7 @@ public class Program
         //program.Task_2_12(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_2_13(new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 });
         //program.Task_2_14(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
-        //program.Task_2_15(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 }, new double[] { 5, 2, 8, 1, 9, 10 }, 7);
+        program.Task_2_15(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 }, new double[] { 5, 2, 8, 1, 9, 10 }, 1);
         //program.Task_2_16(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_2_17(new double[] { 0, 1.5, 4, 3, -2.2, -0.5, 2, -3.1 });
         //program.Task_2_18(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
@@ -62,13 +61,13 @@ public class Program
         //program.Task_3_3(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
         //program.Task_3_4(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_3_5(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
-        //program.Task_3_6(new double[] { 0, 1.5, 1, -1.3, -2.2, -0.5, 2 });
+        //program.Task_3_6(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_3_7(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_3_8(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
-        //program.Task_3_9(new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 });
+        //program.Task_3_9(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_3_10(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_3_11(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
-        program.Task_3_12(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
+        //program.Task_3_12(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_3_13(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_3_14(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
 
@@ -495,6 +494,43 @@ public class Program
     public double[] Task_2_10(double[] array)
     {
         // code here
+        {
+            double[] array2 = new double[array.Length - 1];
+            double min = 99999; int ind = 0;
+            int schet = 0;
+            // code here
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] > 0)
+                {
+                    if (array[i] < min)
+                    {
+                        min = array[i];
+                        ind = i;
+                    }
+                }
+                else return array;
+            }
+            // end
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == min)
+                {
+                    continue;
+
+                }
+                else
+                {
+                    array2[schet] = array[i];
+                    schet++;
+                }
+            }
+            for (int i = 0; i < array2.Length; i++)
+            {
+                Console.WriteLine(array2[i]);
+            }
+            return array2;
+        }
 
         // end
 
@@ -585,19 +621,22 @@ public class Program
         double[] output = null;
 
         // code here
-        if (k > A.Length) return A;
+        
+        if (k >= A.Length) return A;
         output = new double[A.Length + B.Length];
-        for (int i = 0; i < k; i++){
+        for (int i = 0; i <= k; i++)
+        {
             output[i] = A[i];
         }
-        for(int i = k, j = 0; i < B.Length+k; i++, j++){
+        for (int i = k + 1, j = 0; i < k + B.Length+1; i++, j++)
+        {
             output[i] = B[j];
         }
-        for (int i = B.Length + k, j = k; i < B.Length + A.Length; i++, j++){
+        for (int i = B.Length + k+1, j = k+1; i < B.Length + A.Length; i++, j++)
+        {
             output[i] = A[j];
         }
-
-        foreach(double x in output)
+        foreach (double x in output)
             Console.Write(x + " ");
         Console.WriteLine();
         // end
@@ -702,12 +741,13 @@ public class Program
         double max = -999999, swap = 0;
         int index = -1;
 
-        for(int i = 0; i < array.Length; i++){
+        for (int i = 0; i < array.Length; i++)
+        {
             if (array[i] > max) { max = array[i]; index = i; }
         }
-        for(int i = 0; i < index; i+=2)
-            if(i+1 != index) { swap = array[i]; array[i] = array[i+1]; array[i + 1] = swap; }
-        foreach(double x in array)
+        for (int i = 0; i < index; i += 2)
+            if (i + 1 != index) { swap = array[i]; array[i] = array[i + 1]; array[i + 1] = swap; }
+        foreach (double x in array)
             Console.Write(x + " ");
         Console.WriteLine();
         // end
@@ -738,10 +778,12 @@ public class Program
         int[] countArr = new int[5];
         int max = 0;
         for (int i = 0, j = 0; i < array.Length - 1; i++)
-            if (array[i] > array[i + 1]){
+            if (array[i] > array[i + 1])
+            {
                 count++;
             }
-            else{
+            else
+            {
                 countArr[j] = count + 1;
                 count = 0;
                 j++;
@@ -778,12 +820,14 @@ public class Program
         int[] countLowerArr = new int[5];
         int[] countUpperArr = new int[5];
         int max = 0;
-        for (int i = 0, j = 0; i < array.Length-1; i++)
-            if (array[i] > array[i + 1]){
+        for (int i = 0, j = 0; i < array.Length - 1; i++)
+            if (array[i] > array[i + 1])
+            {
                 count++;
                 if (array[i] > array[i + 1] && i == array.Length - 2) { countUpperArr[j] = count + 1; count = 0; j++; }
             }
-            else{
+            else
+            {
                 countLowerArr[j] = count + 1;
                 count = 0;
                 j++;
@@ -792,10 +836,13 @@ public class Program
         count = 0;
 
         for (int i = 0, j = 0; i < array.Length - 1; i++)
-            if (array[i] < array[i + 1]) {
+            if (array[i] < array[i + 1])
+            {
                 count++;
-                if(array[i] < array[i + 1] && i == array.Length - 2) {countUpperArr[j] = count + 1; count = 0; j++;}
-            }else{
+                if (array[i] < array[i + 1] && i == array.Length - 2) { countUpperArr[j] = count + 1; count = 0; j++; }
+            }
+            else
+            {
                 countUpperArr[j] = count + 1;
                 count = 0;
                 j++;
@@ -807,7 +854,7 @@ public class Program
             if (i > max) max = i;
 
         count = max;
-        foreach(int i in countUpperArr)
+        foreach (int i in countUpperArr)
             Console.WriteLine(i);
         // end
 
@@ -830,7 +877,7 @@ public class Program
 
         // end
 
-        return (X, Y, globalMax,globalMin);
+        return (X, Y, globalMax, globalMin);
     }
     public double[] Task_3_12(double[] array)
     {
@@ -840,13 +887,13 @@ public class Program
             if (x < 0) count++;
 
         double[] numbers = new double[array.Length - count];
-        for (int i = 0, j = 0;i<array.Length; i++)
+        for (int i = 0, j = 0; i < array.Length; i++)
             if (array[i] >= 0) { numbers[j] = array[i]; j++; }
 
         array = new double[numbers.Length];
         array = numbers;
 
-        foreach(double x in array)
+        foreach (double x in array)
             Console.Write(x + " ");
         // end
 
