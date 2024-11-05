@@ -604,12 +604,11 @@ public class Program
         // code here
 
         output = new double[A.Length + B.Length];
-        if (k > A.Length)
+        if (k >= A.Length)
         {
             return A;
   
         }
-        k -= 1;
         for (int i = 0; i <= k; i++)
         {
             output[i] = A[i];
@@ -704,24 +703,24 @@ public class Program
         // code here
 
         double maxElement = array[0];
-        double sum = 0;
+        double answer = 0;
         int maxIndex = 0;
         for (int i = 0; i < array.Length; i++)
         {
+            answer += array[i];
             if (array[i] > maxElement)
             {
-                maxElement = array[i];
                 maxIndex = i;
+                maxElement = array[i];
             }
-            sum += array[i];
         }
-        if (maxElement > sum)
+        if (maxElement > answer)
         {
             array[maxIndex] = 0;
         }
         else
         {
-            array[maxIndex] *= 2;
+            array[maxIndex] = maxElement * 2;
         }
 
         // end
