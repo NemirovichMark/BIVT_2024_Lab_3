@@ -1,11 +1,13 @@
-﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Metrics;
 using System.Linq.Expressions;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using System.Runtime.Intrinsics.Arm;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public class Program
@@ -13,22 +15,42 @@ public class Program
     public static void Main()
     {
         Program program = new Program();
-        //program.Task_1_1(new int[] {1, 2, 3, 4, 5, 6});
+        program.Task_1_1(new double[] { 0, 1.5, 1, 3, -2.2, -0.5 });
     }
     #region Level 1
     public double[] Task_1_1(double[] array)
     {
+        double sum = 0;
         // code here
-
-        // end
-
+        for (int i = 0; i < array.Length; i++) sum += array[i];
+        for (int i = 0; i < array.Length; i++) array[i] = Math.Round(array[i] / sum, 2);
+            // end
         return array;
     }
     public double[] Task_1_2(double[] array)
     {
         // code here
+        double sum = 0, n = 0, sr = 0;
 
-        // end
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > 0)
+            {
+                n += 1;
+                sum += array[i];
+            }
+        }
+        sr = sum / n;
+        for (int i = 0; i < array.Length; i++) 
+        {
+            if (array[i] > 0)
+            {
+                array[i] = sr;
+                
+            }
+            array[i] = Math.Round(array[i], 2);
+        }
+            // end
 
         return array;
     }
@@ -37,14 +59,25 @@ public class Program
         double[] sum = new double[first.Length], dif = new double[first.Length];
 
         // code here
-
+        for (int i = 0; i < first.Length; i++)
+        {
+            sum[i] = Math.Round(first[i] + second[i], 2);
+            dif[i] = Math.Round(first[i] - second[i], 2);
+        }
         // end
-
         return (sum, dif);
     }
     public double[] Task_1_4(double[] array)
     {
         // code here
+        double sr = 0, n = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            sr += array[i];
+            n += 1;
+        }
+        sr = sr / n;
+        for (int i = 0; i < array.Length; i++) array[i] = Math.Round(array[i] - sr, 2);
 
         // end
 
@@ -55,9 +88,9 @@ public class Program
         double product = 0;
 
         // code here
-
+        for (int i = 0; i < vector1.Length; i++) product += vector1[i] * vector2[i];
         // end
-
+        product = Math.Round(product, 2);
         return product;
     }
     public double Task_1_6(double[] vector)
@@ -65,7 +98,8 @@ public class Program
         double length = 0;
 
         // code here
-
+        for (int i = 0; i < vector.Length; i++) length += vector[i] * vector[i];
+        length = Math.Round(Math.Sqrt(length), 2);
         // end
 
         return Math.Round(length, 4); ;
@@ -73,7 +107,14 @@ public class Program
     public double[] Task_1_7(double[] array)
     {
         // code here
-
+        double sr = 0, n = 0;
+        for (int i = 0; i < array.Length; i ++)
+        {
+            sr += array[i];
+            n += 1;
+        }
+        sr = sr / n;
+        for (int i = 0; i < array.Length; i++) if (array[i] > sr) array[i] = 0;
         // end
 
         return array;
