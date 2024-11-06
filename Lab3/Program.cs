@@ -13,13 +13,25 @@ public class Program
     public static void Main()
     {
         Program program = new Program();
-        //program.Task_1_1(new int[] {1, 2, 3, 4, 5, 6});
+        double[] first = { -2.2, -0.5, 2, -1 };
+        double[] second = { 0, 1.5, 4, 3 };
+        double[] c = { 2, 1, 3, 3 };
+        program.Task_1_3(first, second);
     }
     #region Level 1
     public double[] Task_1_1(double[] array)
     {
         // code here
-
+        double s = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            s += array[i];
+        }
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i] = Math.Round(array[i] / s, 2);
+        }
+        Console.WriteLine(array);
         // end
 
         return array;
@@ -27,6 +39,24 @@ public class Program
     public double[] Task_1_2(double[] array)
     {
         // code here
+        double s = 0;
+        int k = 0;
+        for(int i = 0; i < array.Length; i++ )
+        {
+            if (array[i] > 0)
+            {
+                s += array[i];
+                k++;
+            }
+        }
+        for(int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > 0)
+            {
+                array[i] = Math.Round(s / k, 2);
+            }
+        }
+        Console.WriteLine(array);
 
         // end
 
@@ -37,7 +67,19 @@ public class Program
         double[] sum = new double[first.Length], dif = new double[first.Length];
 
         // code here
-
+        double s, d;
+        for(int i = 0; i < 4; i++)
+        {
+            s = first[i] + second[i];
+            first[i] = s;
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            d = first[i] - second[i];
+            first[i] = d;
+        }
+        Console.WriteLine($"{first}");
+        Console.WriteLine($"{second}");
         // end
 
         return (sum, dif);
@@ -45,7 +87,17 @@ public class Program
     public double[] Task_1_4(double[] array)
     {
         // code here
-
+        double s = 0, k = 0;
+        for(int i = 0; i < array.Length; i++)
+        {
+            s += array[i];
+            ////k++;
+        }
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i] = array[i] - s / k;
+        }
+        Console.WriteLine(array);
         // end
 
         return array;
@@ -55,7 +107,13 @@ public class Program
         double product = 0;
 
         // code here
-
+        double scalar = 0, a;
+        for(int i = 0; i < vector1.Length; i++)
+        {
+            a = vector1[i] * vector2[i];
+            scalar += a;
+        }
+        Console.WriteLine(scalar);
         // end
 
         return product;
