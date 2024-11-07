@@ -23,9 +23,9 @@ public class Program
         double sum = 0;
         foreach (var n in array) { sum += n; } // compute sum
 
-        for (int i =0; i<array.Length; i++) 
+        for (int i = 0; i < array.Length; i++)
         {
-            array[i] = Math.Round(array[i]/sum,2);
+            array[i] = Math.Round(array[i] / sum, 2);
         }
         // end
 
@@ -34,16 +34,17 @@ public class Program
     public double[] Task_1_2(double[] array) 
     {
         // code here
-        double amount = 0, srArif = 0;
+        double amount = 0, average = 0;
+
         foreach (double n in array) 
         {
-            if (n > 0) { srArif += n; amount++; } // compute sum and amount of positive elements
+            if (n > 0) { average += n; amount++; } // compute sum and amount of positive elements
         }
-        srArif = Math.Round(srArif/amount,2);
+        average = Math.Round(average / amount, 2);
 
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i] > 0) { array[i] = srArif; }
+            array[i] = (array[i] > 0) ? average : array[i]; 
         }
         // end
 
@@ -66,12 +67,12 @@ public class Program
     public double[] Task_1_4(double[] array)
     {
         // code here
-        double srArif = 0;
-        foreach (var n in array) { srArif += n / array.Length; }
+        double average = 0;
+        foreach (var n in array) { average += n / array.Length; }
 
         for (int i = 0; i < array.Length; i++)
         {
-            array[i] = Math.Round(array[i] - srArif, 2);
+            array[i] = Math.Round(array[i] - average, 2);
         }
         // end
 
@@ -82,7 +83,7 @@ public class Program
         double product = 0;
 
         // code here
-        for (int i=0; i<vector1.Length; i++)
+        for (int i = 0; i < vector1.Length; i++)
         {
             product += vector1[i] * vector2[i];
         }
@@ -105,15 +106,12 @@ public class Program
     public double[] Task_1_7(double[] array)
     {
         // code here
-        double srArif = 0;
-        foreach (var n in array) { srArif += n / array.Length; }
+        double average = 0;
+        foreach (var n in array) { average += n / array.Length; }
 
-        for (int i=0; i<array.Length; i++)
+        for (int i = 0; i < array.Length; i++)
         {
-            if (array[i] > srArif)
-            {
-                array[i] = 0;
-            }
+            array[i] = (array[i] > average) ? 0 : array[i];
         }
         // end
 
@@ -124,7 +122,7 @@ public class Program
         int count = 0;
 
         // code here
-        foreach (double n in array) { if (n<0) count++; }
+        foreach (double n in array) { if (n < 0) count++; }
         // end
 
         return count;
@@ -134,10 +132,10 @@ public class Program
         int count = 0;
 
         // code here
-        double srArif = 0;
-        foreach (var n in array) { srArif += n / array.Length; }
+        double average = 0;
+        foreach (var n in array) { average += n / array.Length; }
 
-        foreach (var n in array) { if (n > srArif) count++; }
+        foreach (var n in array) { if (n > average) count++; }
         // end
 
         return count;
@@ -160,10 +158,16 @@ public class Program
         double[] output = null;
 
         // code here
-        output = new double[array.Length];
-        for (int i=0, k=0; i<array.Length; i++) 
+        int amount = 0;
+        foreach (var n in array) { if (n>0) amount++; }
+
+        if (amount > 0)
         {
-            if (array[i] > 0) { output[k] = array[i]; k++; }
+            output = new double[amount];
+            for (int i = 0, k = 0; i < array.Length; i++)
+            {
+                if (array[i] > 0) { output[k] = array[i]; k++; }
+            }
         }
         // end
 
@@ -191,9 +195,9 @@ public class Program
 
         // code 
         int i=0, k=0;
-        foreach (double n in array)
+        foreach (double n in array) // iterate through original array
         {
-            if (k%2!=0) { odd[i] = n; i++; } // when index is odd, we increment the even/odd array's index
+            if (k%2!=0) { odd[i] = n; i++; } // when original array index is odd, we increment the even/odd array's index
             else even[i] = n;
             k++;
         }
@@ -239,13 +243,13 @@ public class Program
     public double[] Task_2_1(double[] array)
     {
         // code here
-        double min=double.MaxValue;
-        foreach (var n in array) { if (n < min) min = n; } //compute minimal value
+        double min = double.MaxValue; int index = 0;
 
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i] == min) { array[i] *= 2; break; }
+            if (array[i] < min) { min = array[i]; index = i; }
         }
+        array[index] *= 2;
         // end
 
         return array;
@@ -267,13 +271,13 @@ public class Program
 
         return sum;
     }
-    public double[] Task_2_3(double[] array) 
+    public double[] Task_2_3(double[] array)
     {
         // code here
         double min = double.MaxValue;
         foreach (var n in array) { if (n < min) min = n; } // compute minimal value
 
-        for (int i=0;i<array.Length;i++)
+        for (int i = 0; i < array.Length; i++)
         {
             if (array[i] == min) break;
             else if (array[i] > 0) array[i] *= 2;
@@ -286,17 +290,17 @@ public class Program
     public double[] Task_2_4(double[] array)
     {
         // code here
-        double max = double.MinValue, srArif = 0;
+        double max = double.MinValue, average = 0;
         foreach (var n in array)
         {
-            if (n > max) max = n; // compute minimal value
-            srArif += n / array.Length; // compute srArif
+            if (n > max) max = n; // compute maximal value
+            average += n / array.Length; // compute average
         }
 
-        for (int i= array.Length-1; i >0; i--)
+        for (int i = array.Length - 1; i > 0; i--)
         {
             if (array[i] == max) break;
-            else array[i] = Math.Round(srArif,2);
+            else array[i] = Math.Round(average, 2);
         }
         // end
 
@@ -328,16 +332,16 @@ public class Program
     public double[] Task_2_6(double[] array, double P)
     {
         // code here
-        double srArif = 0;
-        foreach (var n in array) { srArif += n / array.Length; }
+        double average = 0;
+        foreach (var n in array) { average += n / array.Length; }
 
         int index = 0; 
         double comp = double.MaxValue;
         for (int i=0; i<array.Length; i++) 
         {
-            if (Math.Abs(srArif - array[i]) < comp) 
+            if (Math.Abs(average - array[i]) < comp) 
             {
-                comp = Math.Abs(srArif - array[i]);
+                comp = Math.Abs(average - array[i]);
                 index = i; 
             }
         }
@@ -566,16 +570,16 @@ public class Program
         int[] output = null;
 
         // code here
-        double srArif = 0;
-        foreach (var n in array) { srArif += n / array.Length; }
+        double average = 0;
+        foreach (var n in array) { average += n / array.Length; }
         
         int new_length = 0;
-        foreach (var n in array) { if (n < srArif) new_length++; }
+        foreach (var n in array) { if (n < average) new_length++; }
         output = new int[new_length];
 
         for (int i = 0, k = 0; i < array.Length && k < array.Length; i++)
         {
-            if (array[i] < srArif) { output[k] = i; k++; }
+            if (array[i] < average) { output[k] = i; k++; }
         }
         // end
 
