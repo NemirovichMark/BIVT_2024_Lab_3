@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Numerics;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Xml;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public class Program
@@ -361,24 +362,33 @@ public class Program
     public double[] Task_2_6(double[] array, double P)
     {
         // code here
-        double sum = 0, sred = 0, razn = 10000;
+        double sum = 0, razn = 10000;
         int index = 0;
         for (int i = 0; i < array.Length; i++)
             sum += array[i];
-        sred = sum/array.Length;
+        double sred = sum/array.Length;
+        sred = Math.Round(sred, 2);
         for(int i = 0; i < array.Length;i++)
         {
             if (Math.Abs(array[i] - sred) < razn)
+            {
+                razn = Math.Abs(array[i] - sred);
                 index = i;
+            }
+                
         }
-        for (int i = (array.Length - 2); i >= (index+1); i--)
+        double[] array1 = new double[array.Length + 1];
+        int k = index + 1;
+        for (int i = 0; i <= index; i++)
+            array1[i] = array[i];
+        array1[index + 1] = P;
+        for (int i = index + 2; i < array.Length; i++)
         {
-            array[i + 1] = array[i];
-            Console.WriteLine(array[i]);
+            array1[i] = array[k];
+            k++;
         }
-        array[index+1] = P;
+        array = array1;
         // end
-
         return array;
     }
     public double[] Task_2_7(double[] array)
@@ -675,32 +685,31 @@ public class Program
     #region Level 3
     public int[] Task_3_1(double[] array)
     {
-        int[] output = null;
+        int[] a = new int[array.Length];
         int k = 0;
-        // code here
-        double max = -1000; 
+        double m = array[0];
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i]>max)
-                max = array[i];
-        }
-        for (int i = 0; i < array.Length; i++)
-            if (array[i] == max)
-                k++;
-        output = new int[k];
-        int n = 0;
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] == max)
+            if (array[i] > m)
             {
-                output[n] = i;
-                n++;
+                m = array[i];
+                k = 0;
             }
-                
+            if (array[i] == m)
+            {
+                a[k] = i;
+                k++;
+            }
+            
+               
+        }
+        int[] b = new int[k];
+        for (int i = 0; i < k; i++)
+        {
+            b[i] = a[i];
         }
         // end
-
-        return output;
+        return b;
     }
     public double[] Task_3_2(double[] array)
     {
