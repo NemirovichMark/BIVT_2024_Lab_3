@@ -382,7 +382,7 @@ public class Program
         for (int i = 0; i <= index; i++)
             array1[i] = array[i];
         array1[index + 1] = P;
-        for (int i = index + 2; i < array.Length; i++)
+        for (int i = index + 2; i < array.Length+1; i++)
         {
             array1[i] = array[k];
             k++;
