@@ -176,18 +176,37 @@ public class Program
         int index = -1;
 
         // code here
-
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] < 0)
+            {
+                value = array[i];
+                index = i;
+            }
+        }
         // end
-
         return (value, index);
     }
     public (double[], double[]) Task_1_13(double[] array)
     {
         double[] even = new double[array.Length / 2];
         double[] odd = new double[array.Length/2];
-
+        int k1 = 0, k2 = 0;
         // code here
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (i % 2 == 0)
+            {
+                even[k1] = array[i];
+                k1 += 1;
+            }
+            else
+            {
+                odd[k2] = array[i];
+                k2 += 1;
+            }
 
+        }
         // end
 
         return (even, odd);
@@ -197,7 +216,11 @@ public class Program
         double sum = 0;
 
         // code here
-
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] < 0) break;
+            else sum += array[i] * array[i];
+        }
         // end
 
         return sum;
@@ -207,7 +230,15 @@ public class Program
         double[] y = new double[x.Length];
 
         // code here
-
+        for (int i = 0; i < x.Length; i ++)
+        {
+            if (0.5 * Math.Log(x[i]) < 0)
+            {
+                y[i] = double.NaN;
+            }
+            else y[i] = Math.Round(0.5 * Math.Log(x[i]),2);
+            Console.WriteLine(y[i]);
+        }
         // end
 
         return y;
