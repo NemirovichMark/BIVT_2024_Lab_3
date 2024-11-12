@@ -107,7 +107,7 @@ public class Program
         double product = 0;
 
         // code here
-        double [] pip = new double [] {4};
+        double [] pip = new double [4] ;
         for (int i = 0; i<4; i++)
         {
             pip[i] = vector1[i]*vector2[i];
@@ -116,9 +116,9 @@ public class Program
         {
             product += pip[i];
         }
-        
+        product= Math.Round(product, 2);
         // end
-        Console.Write(product);
+        
 
         return product;
     }
