@@ -30,7 +30,8 @@ public class Program
         //program.Task_1_15(new double[] { 2, -1, 3, -3, 5, 6, -3, 4, 5, 10 });
         //program.Task_2_2(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, -1 });
         //program.Task_2_4(new double[] { 0, 1.5, -1, 3, -2.2, -0.5, 2 });
-        program.Task_2_6(new double[] { 0, 1.5, -1, -3, -2.2, -0.5, 6 }, 2.3);
+        //program.Task_2_6(new double[] { 0, 1.5, -1, -3, -2.2, -0.5, 6 }, 2.3);
+        program.Task_2_8(new double[] { 0, 1.5, -1, 3, -2.2, -0.5, 2 });
 
     }
     #region Level 1
@@ -351,6 +352,7 @@ public class Program
         return y;
     }
     #endregion
+
     #region Level 2
     public double[] Task_2_1(double[] array)
     {
@@ -502,8 +504,43 @@ public class Program
     }
     public double[] Task_2_8(double[] array)
     {
-        // code here
+        // code here { 0, 1.5, 1, 3, -2.2, -0.5, 2 }
+        double elemax = 0,  elemin = 9999, reserv = 0;
+        int indexmax = 0, indexmin = 9999;
 
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > elemax)
+            {
+                elemax = array[i];
+                indexmax = i;
+            }
+        }
+        for (int i = (indexmax + 1); i < array.Length; i++)
+        {
+            if (array[i] < elemin)
+            {
+                elemin = array[i];
+                indexmin = i;
+            }
+        }
+        for (int i = 0; i < array.Length; i++)
+        {
+            reserv = elemax;
+            if (i == indexmax)
+            {
+                array[i] = elemin;
+            }
+            if (i == indexmin)
+            {
+                array[i] = elemax;
+            }
+            Console.WriteLine(array[i]);
+        }
+        //Console.WriteLine(elemax);
+        //Console.WriteLine(indexmax);
+        //Console.WriteLine(elemin);
+        //Console.WriteLine(indexmin);
         // end
 
         return array;
@@ -615,6 +652,7 @@ public class Program
         return sum;
     }
     #endregion
+
     #region Level 3
     public int[] Task_3_1(double[] array)
     {
