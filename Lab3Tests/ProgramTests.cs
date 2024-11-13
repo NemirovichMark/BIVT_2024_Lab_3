@@ -324,8 +324,8 @@ namespace Tests
             // Arrange
             double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, 2, 3.1, -0.7 };
             double[] input2 = new double[] { 2, 1, 3, 3, 5, 6, 0, 1, 2, 3 };
-            double[] answer1 = new double[] { double.NaN, 0.20, 0, 0.55, double.NaN, double.NaN, 0.35, 0.35, 0.57 };
-            double[] answer2 = new double[] { 0.35, 0, 0.55, 0.55, 0.8, 0.9, double.NaN, 0, 0.35 };
+            double[] answer1 = new double[] { double.NaN, 0.20, 0, 0.55, double.NaN, double.NaN, 0.35, 0.35, 0.57, double.NaN };
+            double[] answer2 = new double[] { 0.35, 0, 0.55, 0.55, 0.8, 0.9, double.NaN, 0, 0.35, 0.55 };
             // Act
             input1 = main.Task_1_15(input1);
             input2 = main.Task_1_15(input2);
@@ -815,7 +815,7 @@ namespace Tests
             double[] input1 = new double[] { 0, 1.5, 4, 3, -2.2, -0.5, 2, -3.1 };
             double[] input2 = new double[] { 2, 1, 3, 3, 5, 6, 3, 4 };
             double[] input3 = new double[] { 12, 1, 3, 3, 5, 6, 3, 4 };
-            double output1, output2, output3, answer1 = 2.625, answer2 = 0, answer3 = 4.62;
+            double output1, output2, output3, answer1 = 2.625, answer2 = 0, answer3 = 4.625;
             // Act
             output1 = main.Task_2_17(input1);
             output2 = main.Task_2_17(input2);
