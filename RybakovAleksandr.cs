@@ -16,6 +16,8 @@ public class Program
         //program.Task_1_1(new double[] {1, 2, 3, 4, 5, 6});
         //program.Task_1_12(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, -1 });
         //program.Task_1_14(new double[] { 2, 5, 3, 0, 7, 9, 1, 4, 6, 10, 8 });
+        //program.Task_1_15(new double[] {0, 1.5, 1, 3, -2.2, -0.5, 2, 2, 3.1, -0.7});
+        program.Task_2_6(new double[] { 0, 1.5, -1, -3, -2.2, -0.5, 6 }, 2.3);
     }
     #region Level 1
     public double[] Task_1_1(double[] array)
@@ -281,12 +283,18 @@ public class Program
     }
     public double[] Task_1_15(double[] x)
     {
-        double[] y = new double[x.Length];
+        double[] y = new double[x.Length - 1];
 
         // code here
-        for (int i = 0; i < x.Length; i++)
+
+        for (int i = 0; i < x.Length - 1; i++)
         {
-            y[i] = Math.Log(x[i]) * 0.5;
+            if (x[i] == 0) y[i] = double.NaN;
+            else
+            {
+            y[i] = Math.Round(Math.Log(x[i]) * 0.5, 2);
+            System.Console.WriteLine($"{y[i]}  {x[i]}");
+            }
         }
         // end
 
@@ -298,7 +306,6 @@ public class Program
     public double[] Task_2_1(double[] array)
     {
         // code here
-
         // end
 
         return array;
@@ -308,6 +315,20 @@ public class Program
         double sum = 0;
 
         // code here
+        double m = 0;
+        int mi = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > m)
+            {
+                m = array[i];
+                mi = i;
+            }
+        }
+        for (int j = 0; j < mi; j++)
+        {
+            sum += array[j];
+        }
 
         // end
 
@@ -324,6 +345,22 @@ public class Program
     public double[] Task_2_4(double[] array)
     {
         // code here
+        int mi = 0;
+        double m = 0, mid = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > m)
+            {
+                m = array[i];
+                mi = i;
+            }
+            mid += array[i];
+        }
+        mid = Math.Round(mid / array.Length, 2);
+        for (int j = mi + 1; j < array.Length; j++)
+        {
+            array[j] = mid;
+        }
 
         // end
 
@@ -340,7 +377,32 @@ public class Program
     public double[] Task_2_6(double[] array, double P)
     {
         // code here
-
+        double mid = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            mid += array[i];
+        }
+        mid = mid / array.Length;
+        int mj = 0;
+        double d = 1000000;
+        for (int j = 0; j < array.Length; j++)
+        {
+            if (Math.Abs(array[j] - mid) < d)
+            {
+                d = Math.Abs(array[j] - mid);
+                mj = j;
+            }
+        }
+        for (int i = 0; i < array.Length; i++)
+        {
+            System.Console.Write($"{array[i]} ");
+        } 
+        array[mj] = P;
+        System.Console.WriteLine();
+        for (int i = 0; i < array.Length; i++)
+        {
+            System.Console.Write($"{array[i]} ");
+        } 
         // end
 
         return array;
