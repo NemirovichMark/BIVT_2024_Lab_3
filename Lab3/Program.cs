@@ -13,10 +13,8 @@ public class Program
     public static void Main()
     {
         Program program = new Program();
-        double[] first = { -2.2, -0.5, 2, -1 };
-        double[] second = { 0, 1.5, 4, 3 };
-        double[] c = { 2, 1, 3, 3 };
-        program.Task_1_3(first, second);
+        double[] first = { 0, 1.5, -1, -3, -2.2, -0.5, 6 };
+        program.Task_2_5(first);
     }
     #region Level 1
     public double[] Task_1_1(double[] array)
@@ -70,16 +68,12 @@ public class Program
         double s, d;
         for(int i = 0; i < 4; i++)
         {
-            s = first[i] + second[i];
-            first[i] = s;
+            sum[i] = Math.Round(first[i] + second[i], 2);
         }
         for (int i = 0; i < 4; i++)
         {
-            d = first[i] - second[i];
-            first[i] = d;
+            dif[i] = Math.Round(first[i] - second[i], 2);
         }
-        Console.WriteLine($"{first}");
-        Console.WriteLine($"{second}");
         // end
 
         return (sum, dif);
@@ -91,11 +85,11 @@ public class Program
         for(int i = 0; i < array.Length; i++)
         {
             s += array[i];
-            ////k++;
+            k++;
         }
         for (int i = 0; i < array.Length; i++)
         {
-            array[i] = array[i] - s / k;
+            array[i] = Math.Round(array[i] - s / k, 2);
         }
         Console.WriteLine(array);
         // end
@@ -107,13 +101,14 @@ public class Program
         double product = 0;
 
         // code here
-        double scalar = 0, a;
+        double  a, s = 0;
         for(int i = 0; i < vector1.Length; i++)
         {
-            a = vector1[i] * vector2[i];
-            scalar += a;
+            a = Math.Round(vector1[i] * vector2[i], 2);
+            s += a;
         }
-        Console.WriteLine(scalar);
+        product = Math.Round(s, 2);
+        Console.WriteLine(product);
         // end
 
         return product;
@@ -123,7 +118,13 @@ public class Program
         double length = 0;
 
         // code here
-
+        double l = 0, v;
+        for(int i = 0; i < 5; i++)
+        {
+            l += vector[i] * vector[i];
+        }
+        length = Math.Round(Math.Sqrt(l), 2);
+        Console.WriteLine(length);
         // end
 
         return Math.Round(length, 4); ;
@@ -131,7 +132,20 @@ public class Program
     public double[] Task_1_7(double[] array)
     {
         // code here
+        double s = 0;
+        for(int i = 0; i < array.Length; i++)
+        {
+            s += array[i];
+        }
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > s / array.Length)
+            {
+                array[i] = 0;
+            }
 
+        }
+        Console.WriteLine(array);
         // end
 
         return array;
@@ -141,7 +155,15 @@ public class Program
         int count = 0;
 
         // code here
-
+        int k = 0;
+        for(int i = 0; i < array.Length; i++)
+        {
+            if (array[i] < 0)
+            {
+                count++;
+            }
+        }
+        Console.WriteLine(count);
         // end
 
         return count;
@@ -151,7 +173,19 @@ public class Program
         int count = 0;
 
         // code here
-
+        double s = 0, k = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            s += array[i];
+        }
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > s / array.Length)
+            {
+                count++;
+            }
+        }
+        Console.WriteLine(count);
         // end
 
         return count;
@@ -161,7 +195,14 @@ public class Program
         int count = 0;
 
         // code here
-
+        for (int i = 0; i < 10; i++)
+        {
+            if (P < array[i] && array[i] < Q)
+            {
+                count++;
+            }
+        }
+        Console.WriteLine(count);
         // end
 
         return count;
@@ -171,7 +212,23 @@ public class Program
         double[] output = null;
 
         // code here
-
+        int n = 0;
+        for(int i = 0; i < 10; i++)
+        {
+            if (array[i] > 0)
+            {
+                n++;
+            }
+        }
+        output = new double[n];
+        n = 0;
+        for(int i = 0; i < 10; i++)
+        {
+            if (array[i] > 0)
+            {
+                output[n++] = array[i];
+            }
+        }
         // end
 
         return output;
@@ -182,6 +239,18 @@ public class Program
         int index = -1;
 
         // code here
+        int k=0, n = 0;
+        for(int i = 0; i < 8; i++)
+        {
+            n++;
+            if (array[i] < 0)
+            {
+                value = array[i];
+                k = n;
+            }
+        }
+        index += k;
+        Console.WriteLine($"{value}   {index}");
 
         // end
 
@@ -193,7 +262,20 @@ public class Program
         double[] odd = new double[array.Length/2];
 
         // code here
-
+        int n = 0, k = 0;
+        for(int i = 0; i < 10; i++)
+        {
+            if (i % 2 == 0)
+            {
+                even[n] = array[i];
+                n++;
+            }
+            else 
+            {
+                odd[k] = array[i];
+                k++;
+            }
+        }
         // end
 
         return (even, odd);
@@ -203,7 +285,17 @@ public class Program
         double sum = 0;
 
         // code here
-
+        for(int i = 0; i < 11; i++)
+        {
+            if (array[i] >= 0)
+            {
+                sum += array[i] * array[i];
+            }
+            else
+            {
+                break;
+            }
+        }
         // end
 
         return sum;
@@ -213,7 +305,20 @@ public class Program
         double[] y = new double[x.Length];
 
         // code here
-
+        double yz;
+        for(int i = 0; i < 10; i++)
+        {
+            if (x[i] < 0 || x[i] == 0)
+            {
+                y[i] = double.NaN;
+            }
+            else
+            {
+                yz = 0.5 * Math.Log(x[i]);
+                y[i] = Math.Round(yz, 2);
+                Console.WriteLine(y[i]);
+            }
+        }
         // end
 
         return y;
@@ -224,7 +329,18 @@ public class Program
     public double[] Task_2_1(double[] array)
     {
         // code here
-
+        double n = 100, m = 0;
+        int k = 0;
+        for(int i = 0; i < array.Length; i++)
+        {
+            if (array[i] < n)
+            {
+                n = array[i];
+                k = i;
+            }
+        }
+        array[k] = n * 2;
+        Console.WriteLine(array[k]);
         // end
 
         return array;
@@ -242,7 +358,21 @@ public class Program
     public double[] Task_2_3(double[] array)
     {
         // code here
-
+        double min = 100;
+        int k = 0;
+        for(int i = 0; i < array.Length; i++)
+        {
+            if (array[i] < min)
+            {
+                min = array[i];
+                k = i;
+            }
+        }
+        for(int i = 0; i < k; i++)
+        {
+            array[i] = array[i] * 2;
+            Console.WriteLine(array[i]);
+        }
         // end
 
         return array;
@@ -258,10 +388,41 @@ public class Program
     public double[] Task_2_5(double[] array)
     {
         // code here
+        double min = double.MinValue, max = double.MaxValue;
+        int n = 0, k = 0, t = 0, c = 0;
+        for(int i = 0; i < array.Length; i++)
+        {
+            if (array[i] < max)
+            {
+                max = array[i];
+                k = i;
+            }
+            if (array[i] > min)
+            {
+                min = array[i];
+                t = i;
+            }
 
+        }
+        for(int v = Math.Min(k, t); v < Math.Max(k,t); v++)
+        {
+            if (array[v] < 0)
+            {
+                n++;
+            }
+        }
+        double[] b = new double[n];
+        for(int i = Math.Min(k, t) + 1; i < Math.Max(k, t); i++)
+        {
+            if (array[i] < 0)
+            {
+                b[c] = array[i];
+                c++;
+            }
+        }
         // end
 
-        return array;
+        return b;
     }
     public double[] Task_2_6(double[] array, double P)
     {
