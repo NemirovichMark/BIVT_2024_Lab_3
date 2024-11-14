@@ -22,7 +22,7 @@ public class Program
         //program.Task_2_18(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_3_7(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
         //program.Task_3_10(new double[] { 5, 2, 8, 1, 9, 0, 0, 0, 0, 0 });
-        program.Task_3_13(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
+        //program.Task_3_13(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
     }
     #region Level 1
     public double[] Task_1_1(double[] array)
@@ -282,6 +282,7 @@ public class Program
         // code here
         for (int i = 0; i< x.Length; i++)
         {
+            if (x[i] <= 0) { y[i] = double.NaN; continue; }
             y[i] = Math.Round (0.5* Math.Log(x[i], Math.E));
         }
         Console.WriteLine(string.Join("\n",x));
