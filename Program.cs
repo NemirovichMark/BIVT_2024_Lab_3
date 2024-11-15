@@ -496,8 +496,9 @@ public class Program
     public double[] Task_2_10(double[] array)
     {
         // code here
+        double[] array1 = new double[array.Length - 1];
         double min = 1000000000;
-        int indexmin = 0;
+        int indexmin = -1;
         for (int i = 0; i < array.Length; i++)
         {
             if (array[i] > 0 && array[i] < min)
@@ -506,15 +507,23 @@ public class Program
                 indexmin = i;
             }
         }
-        if (indexmin == 0) 
+        if (indexmin == -1)
             return array;
-        for (int i = indexmin; i < array.Length - 1; i++)
+        else
         {
-            array[i] = array[i + 1];
+            int index = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (i != indexmin)
+                {
+                    array1[index] = array[i];
+                    index++;
+                }
+            }
         }
         // end
 
-        return array;
+        return array1;
     }
     public double[] Task_2_11(double[] array, double P)
     {
@@ -712,7 +721,6 @@ public class Program
                 break;
             }
         }
-        if (otr == -10000000) return 0;
         for (int i = 0; i < array.Length; i++)
         {
             if (array[i] < min)
@@ -918,8 +926,8 @@ public class Program
         double min = 1000000;
         for (int i = 0; i < X.Length; i++)
         {
-            X[i] = Math.Round(a + i * h, 2);
-            Y[i] = Math.Round(Math.Cos(X[i]) + X[i] * Math.Sin(X[i]), 2);
+            X[i] = a + i * h;
+            Y[i] = Math.Cos(X[i]) + X[i] * Math.Sin(X[i]);
         }
         for (int i = 0; i < Y.Length; i++)
         {
