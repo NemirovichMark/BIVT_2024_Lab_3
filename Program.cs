@@ -292,7 +292,7 @@ public class Program
         }
         for (int i = 0; i < x.Length; i++)
         {
-            Console.WriteLine(x[i] + " " + y[i]);
+            Console.WriteLine(x[i] + "   " + y[i]);
         }
             // end
 
@@ -581,8 +581,7 @@ public class Program
             output[i]= B[j++];  
         for(int i=k+1+B.Length,j=k+1;i<output.Length;i++)
             output[i]= A[j++];
-        foreach (double x in output)
-            Console.Write(x + " ");
+        
         // end
 
         return output;
