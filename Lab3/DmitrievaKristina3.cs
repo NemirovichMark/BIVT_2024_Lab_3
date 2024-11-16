@@ -509,7 +509,7 @@ public class Program
                 output[i] = B[index];
                 index++;
             }
-            else output[i + B.Length] = A[i];
+            else output[i] = A[i-B.Length];
         }
         // end
 
