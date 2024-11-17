@@ -23,7 +23,7 @@ public class Program
         //program.Task_1_8(new double[] { 1, 2, 3, 4, 5, 6 });
         //program.Task_1_9(new double[] { 1, 2, 3, 4, -5, -6, -7, -8 });
         //program.Task_1_10(new double[] { 2, 1, 3, 3, 5, 6, 3, 4, 5, 0 }, 3, 4);
-        //program.Task_1_11(new double[] { 2, -1, 3, -3, 5, 6, -3, 4, 5, 10 });
+        //program.Task_1_11(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, 2, 3.1, -0.7 });
         //program.Task_1_12(new double[] { 1, 2, 3, 4, -5, -6, -7, 8 });
         //program.Task_1_13(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, -1.9, 3.9, -0.1 });
         //program.Task_1_14(new double[] { 1, 2, 3, 4, 5, -6, 1, 2, 3, 4, 5 });
@@ -31,8 +31,19 @@ public class Program
         //program.Task_2_2(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, -1 });
         //program.Task_2_4(new double[] { 0, 1.5, -1, 3, -2.2, -0.5, 2 });
         //program.Task_2_6(new double[] { 0, 1.5, -1, -3, -2.2, -0.5, 6 }, 2.3);
-        program.Task_2_8(new double[] { 0, 1.5, -1, 3, -2.2, -0.5, 2 });
-
+        //program.Task_2_8(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_2_8(new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 });
+        //program.Task_2_10(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_2_10(new double[] { -5, -2, -8, -1, -9, -3, -7, -4, -6, -2 });
+        //program.Task_2_12(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_2_14(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_2_16(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        //program.Task_2_18(new double[] { 15, 2, 8, 1, 9, 3, 7, 4, 6, 10 });
+        //program.Task_2_20(new double[] { 12, 1, 3, 3, 5, 6, 3, -4 });
+        //program.Task_3_3(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
+        //program.Task_3_6(new double[] { 0, 1.5, 1, -1.3, -2.2, -0.5, 2 });
+        //program.Task_3_9(new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 });
+        //program.Task_3_12(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
     }
     #region Level 1
     public double[] Task_1_1(double[] array)
@@ -247,23 +258,32 @@ public class Program
     }
     public double[] Task_1_11(double[] array)
     {
-        double[] output = new double[10];
+        double[] output = null;
 
-        // code here
-        int j = 0;
-
-        foreach (double i in array)
+        // code here 0, 1.5, 1, 3, -2.2, -0.5, 2, 2, 3.1, -0.7
+        int k = 0, j = 0;
+        Console.Write("Старый массив: ");
+        for (int i = 0; i < array.Length; i++)
         {
-            if (i > 0)
-            {
-                output[j] = i;
-                Console.WriteLine(output[j]);
-                j++;                
-            }
-            
+            if (array[i] > 0)
+                k++;
+            Console.Write(array[i] + " ");
         }
+        Console.WriteLine();
+        output = new double[k];
+        Console.Write(" Новый массив: ");
+        for (int i = 0; j < k; i++)
+        {
+            if (array[i] > 0)
+            {
+                output[j] = array[i];
+                Console.Write(output[j] + " ");
+                j++;
+            }            
+        }
+        Console.WriteLine();
 
-        // end
+        // end 1.5, 1, 3, 2, 2, 3.1
 
         return output;
     }
@@ -404,7 +424,7 @@ public class Program
 
         Console.Write("Старый массив: ");
         for (int i = 0; i < array.Length; i++)
-        {
+        {            
             if (array[i] > elemax)
             {
                 elemax = array[i];
@@ -505,8 +525,8 @@ public class Program
     public double[] Task_2_8(double[] array)
     {
         // code here { 0, 1.5, 1, 3, -2.2, -0.5, 2 }
-        double elemax = 0,  elemin = 9999, reserv = 0;
-        int indexmax = 0, indexmin = 9999;
+        double elemax = -999,  elemin = 999, reserv = 0;
+        int indexmax = 0, indexmin = 999;
 
         for (int i = 0; i < array.Length; i++)
         {
@@ -515,6 +535,7 @@ public class Program
                 elemax = array[i];
                 indexmax = i;
             }
+            Console.Write(array[i] + " ");
         }
         for (int i = (indexmax + 1); i < array.Length; i++)
         {
@@ -523,6 +544,11 @@ public class Program
                 elemin = array[i];
                 indexmin = i;
             }
+        }        
+        if (indexmax == (array.Length - 1))
+        {
+            elemin = elemax;
+            indexmin = indexmax;
         }
         for (int i = 0; i < array.Length; i++)
         {
@@ -535,12 +561,9 @@ public class Program
             {
                 array[i] = elemax;
             }
-            Console.WriteLine(array[i]);
+            //Console.WriteLine(array[i]);
         }
-        //Console.WriteLine(elemax);
-        //Console.WriteLine(indexmax);
-        //Console.WriteLine(elemin);
-        //Console.WriteLine(indexmin);
+
         // end
 
         return array;
@@ -557,9 +580,38 @@ public class Program
     }
     public double[] Task_2_10(double[] array)
     {
-        // code here
+        // code here  0, 1.5, 1, 3, -2.2, -0.5, 2
+        double[] a = new double[array.Length - 1];
+        double elemin = 999;
+        int indexmin = -1;
 
-        // end
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > 0 && array[i] < elemin)
+            {
+                elemin = array[i];
+                indexmin = i;
+            }
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
+
+        if (indexmin == -1)
+            return array; 
+
+        for (int i = 0; i < indexmin; i++)
+        {
+            a[i] = array[i];
+            Console.Write(a[i] + " ");
+        }
+        for (int i = indexmin; i < a.Length; i++)
+        {
+            a[i] = array[i + 1];
+            Console.Write(a[i] + " ");
+        }
+        Console.WriteLine();
+        array = a;
+        // end  0, 1.5, 3, -2.2, -0.5, 2
 
         return array;
     }
@@ -573,8 +625,38 @@ public class Program
     }
     public double[] Task_2_12(double[] array)
     {
-        // code here
+        // code here 0, 1.5, 1, 3, -2.2, -0.5, 2
+        double elemax = -999, sum = 0;
+        int indexmax = 0;
 
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > elemax)
+            {
+                elemax = array[i];
+                indexmax = i;
+            }
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
+        for (int i = indexmax + 1; i < array.Length; i++)
+        {
+            sum += array[i];
+        }
+        sum = Math.Round(sum, 2);
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] < 0)
+            {
+                array[i] = sum;
+                break;
+            }
+        }
+        for (int i = 0; i < array.Length; i++)
+        {
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
         // end
 
         return array;
@@ -589,7 +671,41 @@ public class Program
     }
     public double[] Task_2_14(double[] array)
     {
-        // code here
+        // code here 0, 1.5, 1, 3, -2.2, -0.5, 2
+        double elemax = -999, elemin = 0;
+        int indexmax = 0, indexmin = -1;
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > elemax)
+            {
+                elemax = array[i];
+                indexmax = i;
+            }
+            Console.Write(array[i]+ " ");
+        }
+        Console.WriteLine();
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] < 0)
+            {
+                elemin = array[i];
+                indexmin = i;
+                break;
+            }
+        }
+
+        if (indexmin == -1)
+            return array;
+
+        array[indexmax] = elemin;
+        array[indexmin] = elemax;
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
 
         // end
 
@@ -611,6 +727,37 @@ public class Program
 
         // code here
 
+        double sum = 0, srednee = 0;
+        int dlina = 0, j = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            sum += array[i];
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
+        srednee = sum / array.Length;
+        Console.WriteLine("Среднее арифметическое: " + srednee);
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] < srednee)
+            {
+                dlina++;
+            }
+        }
+        output = new int[dlina];
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] < srednee)
+            {
+                output[j] = i;
+                j++;
+            }
+        }
+        for (int i = 0; i < output.Length; i++)
+        {
+            Console.Write(output[i] + " ");
+        }
+        Console.WriteLine();
         // end
 
         return output;
@@ -629,6 +776,36 @@ public class Program
     {
         // code here
 
+        double chetmax = 0, nechetmax = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (i % 2 == 1 && array[i] > chetmax) 
+                chetmax = array[i];
+            if (i % 2 == 0 && array[i] > nechetmax) 
+                nechetmax = array[i];
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
+        Console.WriteLine(chetmax + " " + nechetmax);
+        if (nechetmax > chetmax)
+        {
+            for (int i = 0; i < array.Length / 2; i++)
+            {
+                array[i] = 0;
+            }
+        }
+        else
+        {
+            for (int i = array.Length / 2; i < array.Length; i++)
+            {
+                array[i] = 0;                
+            }
+        }
+        for (int i = 0; i < array.Length; i++)
+        { 
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
         // end
 
         return array;
@@ -645,8 +822,52 @@ public class Program
     {
         double sum = 0;
 
-        // code here
+        // code here   15, 2, -8, 1, -9, 3, 7, 4, 6, 10
 
+        double elemin = 999;
+        int indexotriz = -1, indexmin = -1;
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] < elemin)
+            {
+                elemin = array[i];
+                indexmin = i;                
+            }
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] < 0)
+            {
+                indexotriz = i;
+                break;
+            }
+        }
+        Console.WriteLine("индекс мин = " + indexmin + ", индекс отриц = " + indexotriz);
+
+        if (indexotriz == -1)
+        {
+            Console.WriteLine("сумма = 0");
+            return 0;
+        }
+
+        if (indexotriz < indexmin)
+        {
+            for (int i = 0; i < array.Length; i += 2)
+            {
+                sum += array[i];
+            }
+        }
+        else
+        {
+            for (int i = 1; i < array.Length; i += 2)
+            {
+                sum += array[i];
+            }
+        }
+        Console.WriteLine("сумма = " + sum);
         // end
 
         return sum;
@@ -674,9 +895,35 @@ public class Program
     }
     public double[] Task_3_3(double[] array)
     {
-        // code here
+        // code here 0, 1.5, 1, 3, -2.2, -0.5, 3
+        double elemax = -999, reserv = 0;
+        int indexmax = 0;
 
-        // end
+        //Console.Write("Развернутый массив: ");
+        for (int i = array.Length - 1; i >= 0; i--)
+        {
+            if (array[i] >= elemax)
+            {
+                elemax = array[i];
+                indexmax = i;
+            }
+            //Console.Write(array[i] + " ");
+        }
+        //Console.WriteLine();
+
+        Console.Write("Новый массив: ");
+        for (int i = 0; i < indexmax-1; i += 2)
+        {
+            reserv = array[i + 1];
+            array[i + 1] = array[i];
+            array[i] = reserv;
+        }
+        for (int i = 0; i < array.Length; i++)
+        {            
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
+        // end 1.5, 0, 1, 3, -2.2, -0.5, 3
 
         return array;
     }
@@ -698,11 +945,30 @@ public class Program
     }
     public int Task_3_6(double[] array)
     {
-        int count = 0;
+        int count = 0, k = 0;
 
-        // code here
+        // code here 0, 1.5, 1, -1.3, -2.2, -0.5, 2
 
-        // end
+        for (int i = 0; i < array.Length - 1; i++)
+        {
+            if (array[i + 1] < array[i])
+            { 
+                k++;
+            }
+            else
+            {
+                if (k > count)
+                {
+                    count = k;
+                }
+                k = 1;
+            }
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
+        Console.WriteLine("Длина наибольшей упорядоченной последовательности = " + count);
+
+        // end = 4
 
         return count;
     }
@@ -726,9 +992,47 @@ public class Program
     {
         int count = 0;
 
-        // code here
+        // code here  5, 2, 8, 1, 9, 3, 7, 4, 6, 10
+        int Kvozr = 1, KyBblv = 1, Cvozr = 1, CyBblv = 1;
 
-        // end
+        for (int i = 0; i < array.Length - 1; i++)
+        {
+            if (array[i + 1] < array[i])
+            {
+                KyBblv++;
+            }
+            else
+            {
+                if (KyBblv > CyBblv)
+                {
+                    CyBblv = KyBblv;
+                }
+                KyBblv = 1;
+            }
+        }
+        for (int i = 0; i < array.Length - 1; i++)
+        { 
+            if (array[i + 1] > array[i])
+                {
+                    Kvozr++;
+                }                                    
+            else
+            {           
+                if (Kvozr > Cvozr)
+                {
+                    Cvozr += Kvozr;
+                }
+                Kvozr = 1;
+            }            
+        }
+        
+        if (Cvozr > CyBblv)
+            count += Cvozr;
+        else
+            count += CyBblv;
+        Console.WriteLine("Длина наибольшей упорядоченной последовательности = " + count);
+
+        // end 4
 
         return count;
     }
@@ -753,9 +1057,37 @@ public class Program
     }
     public double[] Task_3_12(double[] array)
     {
-        // code here
+        // code here 0, 1.5, 1, 3, -2.2, -0.5, 3
+        int dlina = 0;
 
-        // end
+        Console.Write("Старый массив: ");
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] >= 0)
+            {
+                dlina++;
+            }
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
+        double[] otvet = new double[dlina];
+
+        for (int i = 0, j = 0; i < array.Length; i++)
+        {
+            if (array[i] >= 0)
+            {
+                otvet[j] = array[i];
+                j++;
+            }
+        }
+        array = otvet;
+        Console.Write(" Новый массив: ");
+        for (int i = 0, j = 0; i < array.Length; i++)
+        {
+            Console.Write(array[i] + " ");
+        }
+        Console.WriteLine();
+        // end 0, 1.5, 1, 3, 3
 
         return array;
     }
