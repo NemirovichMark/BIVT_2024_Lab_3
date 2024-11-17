@@ -327,18 +327,24 @@ public class Program
     public double[] Task_2_1(double[] array)
     {
         // code here
-        double min = 1000*1000;
-        int indexMin = -1;
+        double min = array[0];
+        int index = 0;
         for (int i = 0; i < array.Length; i++)
         {
             if (array[i] < min)
             {
                 min = array[i];
-                indexMin = i;
-
+                index = i;
             }
+
         }
-        array[indexMin] = array[indexMin] * 2;
+        if (array[index] < 0)
+            array[index] /= 2;
+        else if (array[index] > 0)
+        {
+            array[index] *= 2;
+        }
+        Console.WriteLine(array);
         // end
 
         return array;
@@ -536,7 +542,6 @@ public class Program
         {
             average = sum / schMinMax;
         }
-        average = Math.Round(average, 2);
         // end
 
         return average;
@@ -621,33 +626,25 @@ public class Program
     }
     public double[] Task_2_15(double[] A, double[] B, int k)
     {
-        double[] output = null;
+        k = k + 1;
+        if (k < 0) k = 0; 
+        if (k > A.Length) k = A.Length;
 
-        // code here
-        int lengthOut = A.Length + B.Length;
-        output = new double[lengthOut];
-        if (k < 0)
-        {
-            k = 0;
-        }
-        k += 1;
-        for (int i = 0; i < A.Length; i++)
-        {
-            if (i == k)
-            {
-                for (int indB = 0; indB < B.Length; indB ++)
-                {
-                    output[indB + k] = B[indB];
-                }
-            }
-            else if (i < k)
-            {
-                output[i] = A[i];
-            }
-            output[i + B.Length] = A[i]; //tests
-        }
+        double[] output = new double[A.Length + B.Length];
 
-        // end
+        for (int i = 0; i < k && i < A.Length; i++)
+        {
+            output[i] = A[i];
+        }
+        for (int i = 0; i < B.Length; i++)
+        {
+            output[i + k] = B[i];
+        }
+    
+        for (int i = k; i < A.Length; i++)
+        {
+            output[i + B.Length] = A[i];  
+        }
 
         return output;
     }
@@ -709,7 +706,7 @@ public class Program
         {
             return 0;
         }
-        average = Math.Round(sum / sch, 2);
+        average = sum / sch;
         // end
 
         return average;
@@ -766,38 +763,31 @@ public class Program
     #region Level 3
     public int[] Task_3_1(double[] array)
     {
-        int[] output = null;
-
-        // code here
-        int counterMax = 0;
-        double max = -10000*10000;
+        int[] newArray = new int[array.Length];
+        int k = 0;
+        double max = array[0];
         for (int i = 0; i < array.Length; i++)
         {
             if (array[i] > max)
             {
                 max = array[i];
+                k = 0;
             }
-        }
-        for (int i = 0; i < array.Length; i ++)
-        {
             if (array[i] == max)
             {
-                counterMax ++;
+                newArray[k] = i;
+                k++;
             }
+            
+               
         }
-        output = new int[counterMax];
-        int counterOut = 0;
-        for (int i = 0; i < array.Length; i ++)
+        int[] b = new int[k];
+        for (int i = 0; i < k; i++)
         {
-            if (array[i] == max)
-            {
-                output[counterOut] = i;
-                counterOut ++;
-            }
+            b[i] = newArray[i];
         }
         // end
-
-        return output;
+        return b;
     }
     public double[] Task_3_2(double[] array)
     {
