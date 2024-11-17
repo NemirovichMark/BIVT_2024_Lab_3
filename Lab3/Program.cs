@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Metrics;
 using System.Linq.Expressions;
+using System.Net;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -14,14 +15,14 @@ public class Program
     {
         Program program = new Program();
         //program.Task_1_1(new int[] { 1, 2, 3, 4, 5, 6 });
-        program.Task_2_16(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
+        program.Task_2_5(new double[] { 0, 1.5, -1, -3, -2.2, -0.5, 6 });
     }
     #region Level 1
     public double[] Task_1_1(double[] array)
     {
         // code here
         double sum = 0;
-        foreach (var n in array) { sum += n; } // compute sum
+        for (int i = 0; i < array.Length; i++) { sum += array[i]; } // compute sum
 
         for (int i = 0; i < array.Length; i++)
         {
@@ -36,9 +37,9 @@ public class Program
         // code here
         double amount = 0, average = 0;
 
-        foreach (double n in array) 
+        for (int i = 0; i < array.Length; i++)
         {
-            if (n > 0) { average += n; amount++; } // compute sum and amount of positive elements
+            if (array[i] > 0) { average += array[i]; amount++; } // compute sum and amount of positive elements
         }
         average = Math.Round(average / amount, 2);
 
@@ -68,7 +69,7 @@ public class Program
     {
         // code here
         double average = 0;
-        foreach (var n in array) { average += n / array.Length; }
+        for (int i = 0; i < array.Length; i++) { average += array[i] / array.Length; }
 
         for (int i = 0; i < array.Length; i++)
         {
@@ -97,7 +98,7 @@ public class Program
         double length = 0;
 
         // code here
-        foreach (double n in vector) { length += n*n; }
+        for (int i = 0; i < vector.Length; i++) { length += vector[i] * vector[i]; }
         length = Math.Round(Math.Sqrt(length), 2);
         // end
 
@@ -107,7 +108,7 @@ public class Program
     {
         // code here
         double average = 0;
-        foreach (var n in array) { average += n / array.Length; }
+        for (int i = 0; i < array.Length; i++) { average += array[i] / array.Length; }
 
         for (int i = 0; i < array.Length; i++)
         {
@@ -122,7 +123,7 @@ public class Program
         int count = 0;
 
         // code here
-        foreach (double n in array) { if (n < 0) count++; }
+        for (int i = 0; i < array.Length; i++) { if (array[i] < 0) count++; }
         // end
 
         return count;
@@ -133,9 +134,9 @@ public class Program
 
         // code here
         double average = 0;
-        foreach (var n in array) { average += n / array.Length; }
+        for (int i = 0; i < array.Length; i++) { average += array[i] / array.Length; }
 
-        foreach (var n in array) { if (n > average) count++; }
+        for (int i = 0; i < array.Length; i++) { if (array[i] > average) count++; }
         // end
 
         return count;
@@ -145,9 +146,9 @@ public class Program
         int count = 0;
 
         // code here
-        foreach (double n in array)
+        for (int i = 0; i < array.Length; i++)
         {
-            if (n>P && n<Q) count++;
+            if (array[i] > P && array[i] < Q) count++;
         }
         // end
 
@@ -159,16 +160,13 @@ public class Program
 
         // code here
         int amount = 0;
-        foreach (var n in array) { if (n>0) amount++; }
+        for (int i = 0; i < array.Length; i++) { if (array[i] > 0) amount++; }
 
-        if (amount > 0)
-        {
-            output = new double[amount];
+        output = new double[amount];
             for (int i = 0, k = 0; i < array.Length; i++)
             {
                 if (array[i] > 0) { output[k] = array[i]; k++; }
             }
-        }
         // end
 
         return output;
@@ -191,13 +189,13 @@ public class Program
     public (double[], double[]) Task_1_13(double[] array)
     {
         double[] even = new double[array.Length / 2];
-        double[] odd = new double[array.Length/2];
+        double[] odd = new double[array.Length / 2];
 
         // code 
-        int i=0, k=0;
+        int i = 0, k = 0;
         foreach (double n in array) // iterate through original array
         {
-            if (k%2!=0) { odd[i] = n; i++; } // when original array index is odd, we increment the even/odd array's index
+            if (k % 2 != 0) { odd[i] = n; i++; } // when original array index is odd, we increment the even/odd array's index
             else even[i] = n;
             k++;
         }
@@ -243,13 +241,15 @@ public class Program
     public double[] Task_2_1(double[] array)
     {
         // code here
-        double min = double.MaxValue; int index = 0;
+        int index = 0;
 
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i] < min) { min = array[i]; index = i; }
+            if (array[i] < array[index]) { index = i; }
         }
-        array[index] *= 2;
+
+        if (array[index] < 0) array[index] /= 2;
+        else array[index] *= 2;
         // end
 
         return array;
@@ -259,14 +259,15 @@ public class Program
         double sum = 0;
 
         // code here
-        double max = double.MinValue;
-        foreach (var n in array) { if (n > max) max = n; } // compute maximal value
 
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] == max) break;
-            else sum += array[i];
-        }
+        int iMax = 0; // index of max value in array
+
+        for (int i = 0; i < array.Length; i++) 
+        { 
+            if (array[i] > array[iMax]) iMax=i; // find maximal value
+        } 
+
+        for (int i = 0; i < iMax; i++) sum += array[i];
         // end
 
         return sum;
@@ -274,14 +275,17 @@ public class Program
     public double[] Task_2_3(double[] array)
     {
         // code here
-        double min = double.MaxValue;
-        foreach (var n in array) { if (n < min) min = n; } // compute minimal value
+        int iMin = 0; // index of min value in array
 
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i] == min) break;
-            else if (array[i] > 0) array[i] *= 2;
-            else array[i] /= 2;
+            if (array[i] < array[iMin]) iMin = i; // find minimal value
+        }
+
+        for (int i = 0; i < iMin; i++)
+        {
+            if (array[i] > 0) array[i] *= 2; 
+            else array[i] /= 2; // we divide if element is negative because multiplying it will make it smaller
         }
         // end
 
@@ -290,17 +294,18 @@ public class Program
     public double[] Task_2_4(double[] array)
     {
         // code here
-        double max = double.MinValue, average = 0;
-        foreach (var n in array)
+        int iMax = 0; 
+        double average = 0;
+
+        for (int i = 0; i < array.Length; i++)
         {
-            if (n > max) max = n; // compute maximal value
-            average += n / array.Length; // compute average
+            if (array[i] > array[iMax]) iMax = i; // find maximal value
+            average += array[i] / array.Length; // compute average
         }
 
-        for (int i = array.Length - 1; i > 0; i--)
+        for (int i = iMax+1; i < array.Length; i++)
         {
-            if (array[i] == max) break;
-            else array[i] = Math.Round(average, 2);
+            array[i] = Math.Round(average, 2); // substitute for rounded average
         }
         // end
 
@@ -309,22 +314,36 @@ public class Program
     public double[] Task_2_5(double[] array)
     {
         // code here
-        double[] array2 = array;
-        array = new double[array.Length];
 
-        double max = double.MinValue; int iMax = 0;
-        double min = double.MaxValue; int iMin = 0;
-        for (int i = 0; i < array2.Length; i++)
+        int iMax = 0, iMin = 0;
+        for (int i = 0; i < array.Length; i++)
         {
-            if (array2[i] < min) { min = array2[i]; iMin = i; } // compute minimal value
-            if (array2[i] > max) { max = array2[i]; iMax = i; } // compute maximal value
+            if (array[i] > array[iMax]) iMax = i; // find max value
+            if (array[i] < array[iMin]) iMin = i; // find min value
         }
 
-        for ( int i=iMin+1, k=0; i<iMax; i++)
+        // determine start and end indexes between min and max
+        int iStart = (iMin < iMax) ? iMin : iMax;
+        int iEnd = (iMin < iMax) ? iMax : iMin;
+
+        // count amount of negatives
+        int amount = 0;
+        for (int i = iStart+1; i < iEnd; i++)
         {
-            if (array2[i]<0) 
-            { array[k] = array2[i]; k++; }
+            if (array[i] < 0) amount++;
         }
+
+        double[] arrNegative = new double[amount];
+
+        if (amount > 0)
+        {
+            for (int i = iStart + 1, k=0; i < iEnd; i++)
+            {
+                if (array[i] < 0) { arrNegative[k] = array[i]; k++; } // k is only incremented after we add new element to neg. array
+            }
+        }
+
+        array = arrNegative;
         // end
 
         return array;
@@ -333,30 +352,33 @@ public class Program
     {
         // code here
         double average = 0;
-        foreach (var n in array) { average += n / array.Length; }
+        for (int i = 0; i < array.Length; i++) { average += array[i] / array.Length; }
 
-        int index = 0; 
-        double comp = double.MaxValue;
-        for (int i=0; i<array.Length; i++) 
+
+        double smallest_dif = double.MaxValue; // smallest found "distance" between average and an array element
+        int index = 0; // index of element closest to average
+        for (int i = 0; i < array.Length; i++)
         {
-            if (Math.Abs(average - array[i]) < comp) 
+            double dif = Math.Abs(average - array[i]); // distance from average to array[i]
+            if (dif < smallest_dif)
             {
-                comp = Math.Abs(average - array[i]);
-                index = i; 
+                smallest_dif = dif;
+                index = i;
             }
         }
 
-        double[] arr2 = array;
-        array = new double[array.Length+1];
-        for (int i = 0, k = 0; i < arr2.Length; k++)
+        double[] arrCopy = new double[array.Length + 1]; // new array with place to insert P
+        for (int i = 0, k = 0; i < array.Length; i++)
         {
-            if (k == index+1) // the next element of array must be what is the current element of arr2, so we don't increment it here
+            arrCopy[k] = array[i];
+            if (k == index)
             {
-                array[k] = P;
+                arrCopy[k+1] = P; // insert P in its place
+                k++; // increment to move on to next element in arrCopy
             }
-            else { array[k] = arr2[i]; i++; } 
-            
+            k++;
         }
+        array = arrCopy;
         // end
 
         return array;
@@ -364,15 +386,16 @@ public class Program
     public double[] Task_2_7(double[] array) 
     {
         // code here
-        double max = double.MinValue; int iMax = 0;
+        int iMax = 0; // index of max value in array
+
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i] > max) { max = array[i]; iMax = i; } // compute maximal value
+            if (array[i] > array[iMax]) iMax = i; // find maximal value
         }
 
         if (iMax != array.Length - 1)
         {
-            if (array[iMax + 1]>0) array[iMax+1] *= 2;
+            if (array[iMax + 1] > 0) array[iMax + 1] *= 2;
             else array[iMax + 1] /= 2;
         }
         // end
@@ -382,45 +405,50 @@ public class Program
     public double[] Task_2_8(double[] array)
     {
         // code here
-        double max = double.MinValue; int iMax = 0;
+        int iMax = 0; // index of max value in array
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i] > max) { max = array[i]; iMax = i; } 
+            if (array[i] > array[iMax]) iMax = i; // find maximal value
         }
 
         if (iMax != array.Length - 1)
         {
-            double min = double.MaxValue; int iMin = 0;
-            for (int i = iMax + 1; i < array.Length; i++)
+            int iMin = 0; // index of min value in array
+            for (int i = iMax+1; i < array.Length; i++)
             {
-                if (array[i] < min) { min = array[i]; iMin = i; } 
+                if (array[i] < array[iMin]) iMin = i; // find minimal value
             }
 
-            array[iMax] = min;
+            // swap max and min
+            double max = array[iMax];
+            array[iMax] = array[iMin];
             array[iMin] = max;
         }
         // end
 
         return array;
     }
-    public double Task_2_9(double[] array) // problem: ask Mark how is the first output supposed to work if min is placed after max
+    public double Task_2_9(double[] array)
     {
         double average = 0;
 
         // code here
-        double max = double.MinValue; int iMax = 0;
-        double min = double.MaxValue; int iMin = 0;
+        int iMax = 0, iMin = 0;
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i] < min) { min = array[i]; iMin = i; } // compute minimal value
-            if (array[i] > max) { max = array[i]; iMax = i; } // compute maximal value
+            if (array[i] > array[iMax]) iMax = i; // find max value
+            if (array[i] < array[iMin]) iMin = i; // find min value
         }
 
-        for (int i=iMin+1; i<iMax;i++)
+        // determine start and end indexes between min and max
+        int iStart = (iMin < iMax) ? iMin : iMax;
+        int iEnd = (iMin < iMax) ? iMax : iMin;
+
+        int amount = iEnd - iStart - 1; // amount of elements between min and max (we substitute 1 to account for indexes starting from 0)
+        for (int i = iStart+1; i < iEnd; i++)
         {
-            average += array[i] / array.Length;
+            average += array[i] / amount;
         }
-        average = Math.Round(average, 2);
         // end
 
         return average;
@@ -428,22 +456,23 @@ public class Program
     public double[] Task_2_10(double[] array)
     {
         // code here
-        double min = double.MaxValue; int iMin = 0;
+        double min = double.MaxValue;
+        int iMin = 0; // index of min value in array
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i] < min && array[i]>0) { min = array[i]; iMin = i; } // compute minimal value
+            if (array[i] > 0 && array[i] < min) { min = array[i]; iMin = i; } // find minimal value
         }
 
-        if (array[iMin] > 0) // if the smallest value is negative, it means there are no positives at all, so we don't proceed
+        if (array[iMin] > 0) // if min is negative or 0, it means there are no positives at all, so we don't proceed
         {
-            double[] arr2 = array;
-            array = new double[arr2.Length - 1];
-            for (int i = 0, k = 0; k < array.Length; i++)
+            double[] arrCopy = new double[array.Length-1]; 
+            for (int i = 0, k = 0; k < arrCopy.Length; i++)
             {
-                if (i == iMin) i++;
-                array[k] = arr2[i];
+                if (i == iMin) i++; // if index is iMin, we skip it and don't insert this value
+                arrCopy[k] = array[i]; 
                 k++;
             }
+            array = arrCopy;
         }
         // end
 
@@ -452,21 +481,27 @@ public class Program
     public double[] Task_2_11(double[] array, double P)
     {
         // code here
-        int index=0;
-        for (int i = array.Length - 1; i >= 0; i--)
+        int iPos = -1;
+        for (int i = array.Length - 1; i >= 0; i--) // starting from end of array because we want to find last element
         {
-            if (array[i] > 0) { index = i; break; }
+            if (array[i] > 0) { iPos = i; break; }
         }
 
-        if (array[index] > 0)
+        if (iPos != -1) // means at least 1 positive element was found
         {
-            double[] arr2 = new double[array.Length + 1];
-            for (int i = 0, k = 0; k < arr2.Length; k++)
+            Console.WriteLine(iPos);
+            double[] arrCopy = new double[array.Length + 1]; // new array with place to insert P
+            for (int i = 0, k = 0; i < array.Length; i++)
             {
-                if (k == index + 1) arr2[k] = P;
-                else { arr2[k] = array[i]; i++; }
+                arrCopy[k] = array[i];
+                if (k == iPos)
+                {
+                    arrCopy[k+1] = P; // insert P in its place
+                    k++; // increment to move on to next element in arrCopy
+                }
+                k++;
             }
-            array = arr2;
+            array = arrCopy;
         }
         // end
 
@@ -476,11 +511,12 @@ public class Program
     {
         // code here
 
-        // compute maximal value
-        double max = double.MinValue; int iMax = 0;
-        for (int i = 0; i < array.Length; i++)
+        int iMax = 0; // index of max value in array
+        int iNeg = 0; // index of first negative
+        for (int i = array.Length-1; i >= 0; i--)
         {
-            if (array[i] > max) { max = array[i]; iMax = i; } 
+            if (array[i] < 0) iNeg = i;
+            if (array[i] > array[iMax]) iMax = i; // find maximal value
         }
 
         if (iMax != array.Length - 1) // if max element is last, we can't make a sum of elements after it
@@ -492,11 +528,7 @@ public class Program
                 sum += array[i];
             }
 
-            // replace first negative with sum
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (array[i] < 0) { array[i] = Math.Round(sum,2); break; }
-            }
+            array[iNeg] = sum;
         }
 
         // end
@@ -507,11 +539,11 @@ public class Program
     {
         // code here
 
-        // compute maximal value
-        double max = double.MinValue; int iMax = 0;
+        // compute max value
+        int iMax = 0;
         for (int i = 0; i < array.Length; i+=2)
         {
-            if (array[i] > max) { max = array[i]; iMax = i; }
+            if (array[i] > array[iMax]) { iMax = i; }
         }
 
         array[iMax] = iMax;
@@ -524,20 +556,19 @@ public class Program
         // code here
 
         // compute maximal value
-        double max = double.MinValue; 
+        double max = double.MinValue; // max element
         int iMax = 0, iNeg=-1;
-        for (int i = array.Length-1; i >= 0; i--)
+        for (int i = array.Length-1; i >= 0; i--) // starting from end of array because we want to find first negative
         {
             if (array[i] < 0) iNeg = i;
             if (array[i] > max) { max = array[i]; iMax = i; }
         }
 
-        if (iNeg > -1)
+        if (iNeg > -1) // means that a negative is found, otherwise we can't proceed
         {
             array[iMax] = array[iNeg];
             array[iNeg] = max;
         }
-
         // end
 
         return array;
@@ -547,39 +578,50 @@ public class Program
         double[] output = null;
 
         // code here
-        output = new double[A.Length + B.Length];
-        for (int a = 0, b=0, n=0; a < A.Length; n++)
+        if (k >= A.Length) return A; // if k is outside of A, we can't insert B into it
+
+        output = new double[A.Length + B.Length]; // new array for housing A and B
+        int i = 0; // index for the output array
+
+        // insert part of A from start to k
+        for (int a=0; a<=k; a++) 
         {
-            if (a==k+1 && b<B.Length)
-            {
-                output[n] = B[b];
-                b++;
-            }
-            else
-            {
-                output[n] = A[a];
-                a++;
-            }
+            output[i] = A[a];
+            i++;
+        }
+
+        // insert B until we reach it's end
+        for (int b=0; b < B.Length; b++)
+        {
+            output[i] = B[b];
+            i++;
+        }
+
+        // insert part of A from k+1 to end of A
+        for (int a=k+1; a < A.Length; a++)
+        {
+            output[i] = A[a];
+            i++;
         }
         // end
 
         return output;
     }
-    public int[] Task_2_16(double[] array) 
+    public int[] Task_2_16(double[] array)
     {
         int[] output = null;
 
         // code here
         double average = 0;
-        foreach (var n in array) { average += n / array.Length; }
+        for (int i = 0; i < array.Length; i++) { average += array[i] / array.Length; } // compute average
         
         int new_length = 0;
-        foreach (var n in array) { if (n < average) new_length++; }
-        output = new int[new_length];
+        for (int i = 0; i < array.Length; i++) { if (array[i] < average) new_length++; } // determine the amount of elements for new array
 
+        output = new int[new_length];
         for (int i = 0, k = 0; i < array.Length && k < array.Length; i++)
         {
-            if (array[i] < average) { output[k] = i; k++; }
+            if (array[i] < average) { output[k] = i; k++; } // put the needed elements in ouput array
         }
         // end
 
@@ -590,30 +632,28 @@ public class Program
         double average = 0;
 
         // code here
-        double max = double.MinValue; int iMax = 0;
-        double min = double.MaxValue; int iMin = 0;
+        int iMax = 0, iMin = 0;
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i] < min) { min = array[i]; iMin = i; } // compute minimal value
-            if (array[i] > max) { max = array[i]; iMax = i; } // compute maximal value
+            if (array[i] > array[iMax]) iMax = i; // find max value
+            if (array[i] < array[iMin]) iMin = i; // find min value
         }
 
         int count = 0;
-        if (iMax<iMin)
+        double sum = 0;
+        
+        for (int i = 0; i < array.Length; i++)
         {
-            for (int i = 0; i < array.Length; i++)
+            if (iMax < iMin) 
             {
-                if (array[i] > 0) { average += array[i]; count++; }
+                if (array[i] > 0) { sum += array[i]; count++; } // find sum and amount of positives
+            }
+            else
+            {
+                if (array[i] < 0) { sum += array[i]; count++; } // find sum and amount of negatives
             }
         }
-        else
-        {
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (array[i] < 0) { average += array[i]; count++; }
-            }
-        }
-        if (count != 0) average = Math.Round(average / count, 2);
+        if (count != 0) average = Math.Round(sum / count, 3);
 
         // end
 
@@ -622,27 +662,20 @@ public class Program
     public double[] Task_2_18(double[] array)
     {
         // code here
-        double maxOdd = double.MinValue; 
-        double maxEven = double.MinValue; 
+        double maxOdd = double.MinValue;
+        double maxEven = double.MinValue;
         for (int i = 0; i < array.Length; i++)
         {
-            if (i%2!=0 && array[i] > maxOdd) { maxOdd = array[i]; } 
-            if (i % 2 == 0 && array[i] > maxEven) { maxEven = array[i]; } 
+            if (i % 2 != 0 && array[i] > maxOdd) { maxOdd = array[i]; } // count for odds
+            if (i % 2 == 0 && array[i] > maxEven) { maxEven = array[i]; } // count for evens
         }
 
-        if (maxEven>maxOdd)
+        int index = (maxEven > maxOdd) ? 0 : array.Length / 2; 
+        int end = (maxEven > maxOdd) ? array.Length / 2 : array.Length;
+
+        for (; index < end; index++)
         {
-            for (int i = 0; i < array.Length/2; i++)
-            {
-                array[i] = 0;
-            }
-        }
-        else
-        {
-            for (int i = array.Length / 2; i < array.Length; i++)
-            {
-                array[i] = 0;
-            }
+            array[index] = 0;
         }
         // end
 
@@ -651,45 +684,38 @@ public class Program
     public double[] Task_2_19(double[] array)
     {
         // code here
-        double max = double.MinValue, sum = 0;
-        int iMax = 0;
+        double sum = 0; // sum of elements in array
+        int iMax = 0; // index of max element
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i] > max) { max = array[i]; iMax = i; }
+            if (array[i] > array[iMax]) { iMax = i; } // find max element
             sum += array[i];
         }
 
-        if (max > sum) array[iMax] = 0;
-        else array[iMax] *= 2;
-        // why the fuck are all the previous ones so complicated and this one is just that?..
-
+        array[iMax] = (array[iMax] > sum) ? 0 : array[iMax] * 2;
         // end
 
         return array;
     }
-    public double Task_2_20(double[] array) 
+    public double Task_2_20(double[] array)
     {
         double sum = 0;
 
         // code here
-        double min = double.MaxValue; int iMin = 0, iNeg = int.MaxValue;
-        bool negFound = false;
-        for (int k = 0; k < array.Length; k++)
+        int iMin = 0; // index of min element
+        int iNeg = -1; // index of first negative
+
+        for (int i = array.Length - 1; i >= 0; i--)
         {
-            if (array[k] < min) { min = array[k]; iMin = k; } // compute minimal value
-            if (!negFound && array[k] < 0) { negFound = true; iNeg = k; }
+            if (array[i] < array[iMin]) { iMin = i; } // find min element
+            if (array[i] < 0) { iNeg = i; }
         }
 
-        if (negFound) // we only find the sum if a negative number is actually present in the array
-        {
-            int i;
-            if (iNeg < iMin) i = 0;
-            else i = 1;
+        int startIndex = (iNeg < iMin) ? 0 : 1;
 
-            for (; i < array.Length; i += 2)
-            {
-                sum += array[i];
-            }
+        for (; startIndex < array.Length; startIndex += 2)
+        {
+            sum += array[startIndex];
         }
         // end
 
@@ -698,7 +724,7 @@ public class Program
     #endregion
 
     #region Level 3
-    public int[] Task_3_1(double[] array)
+    public int[] Task_3_1(double[] array) 
     {
         int[] output = null;
 
@@ -716,10 +742,21 @@ public class Program
 
         return array;
     }
-    public double[] Task_3_3(double[] array)
+    public double[] Task_3_3(double[] array) // mine
     {
         // code here
+        int iMax = 0; // index of max element
+        for (int i = array.Length - 1; i >= 0; i--)
+        {
+            if (array[i] >= array[iMax]) { iMax = i; } // find max element
+        }
 
+        for (int i = 0; i < iMax - 1; i += 2)
+        {
+            double current = array[i]; // current value of array[i] element
+            array[i] = array[i + 1];
+            array[i + 1] = current;
+        }
         // end
 
         return array;
@@ -740,12 +777,25 @@ public class Program
 
         return array;
     }
-    public int Task_3_6(double[] array)
+    public int Task_3_6(double[] array) // mine
     {
         int count = 0;
 
         // code here
+        int len = 1; // length of the current element chain
 
+        for (int i = 1; i < array.Length; i++)
+        {
+            if (array[i] < array[i-1])
+            {
+                len++;
+                count = (count>len) ? count : len;
+            }
+            else
+            {
+                len = 1;
+            }
+        }
         // end
 
         return count;
@@ -766,12 +816,36 @@ public class Program
 
         return array;
     }
-    public int Task_3_9(double[] array)
+    public int Task_3_9(double[] array) // mine
     {
         int count = 0;
 
         // code here
+        int lenD = 1; // length of the current descending element chain
+        int lenA = 1 ; // length of the current ascending element chain
 
+        for (int i = 1; i < array.Length; i++)
+        {
+            if (array[i] < array[i - 1])
+            {
+                lenD++;
+                count = (count > lenD) ? count : lenD;
+            }
+            else
+            {
+                lenD = 1;
+            }
+
+            if (array[i] > array[i - 1])
+            {
+                lenA++;
+                count = (count > lenA) ? count : lenA;
+            }
+            else
+            {
+                lenA = 1;
+            }
+        }
         // end
 
         return count;
@@ -795,10 +869,23 @@ public class Program
 
         return (X, Y, globalMax,globalMin);
     }
-    public double[] Task_3_12(double[] array)
+    public double[] Task_3_12(double[] array) // mine
     {
         // code here
+        int amount = 0; // amount of negatives
 
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] >= 0) amount++;
+        }
+
+        double[] arrCopy = new double[amount];
+        for (int i = 0, k = 0; i < array.Length; i++)
+        {
+            if (array[i] >= 0) { arrCopy[k] = array[i]; k++; }
+        }
+
+        array = arrCopy;
         // end
 
         return array;
