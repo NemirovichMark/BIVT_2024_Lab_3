@@ -39,7 +39,7 @@ public class Program
         //program.Task_2_14(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_2_16(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 });
         //program.Task_2_18(new double[] { 15, 2, 8, 1, 9, 3, 7, 4, 6, 10 });
-        //program.Task_2_20(new double[] { 12, 1, 3, 3, 5, 6, 3, -4 });
+        program.Task_2_20(new double[] { 0, 1.5, 4, 3, -2.2, -0.5, 2, -3.1 });
         //program.Task_3_3(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
         //program.Task_3_6(new double[] { 0, 1.5, 1, -1.3, -2.2, -0.5, 2 });
         //program.Task_3_9(new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 });
@@ -822,10 +822,10 @@ public class Program
     {
         double sum = 0;
 
-        // code here   15, 2, -8, 1, -9, 3, 7, 4, 6, 10
+        // code here   0, 1.5, 4, 3, -2.2, -0.5, 2, -3.1
 
         double elemin = 999;
-        int indexotriz = -1, indexmin = -1;
+        int indexotriz = 999, indexmin = 0;
 
         for (int i = 0; i < array.Length; i++)
         {
@@ -847,11 +847,11 @@ public class Program
         }
         Console.WriteLine("индекс мин = " + indexmin + ", индекс отриц = " + indexotriz);
 
-        if (indexotriz == -1)
-        {
-            Console.WriteLine("сумма = 0");
-            return 0;
-        }
+        //if (indexotriz == -1)
+        //{
+        //    Console.WriteLine("сумма = 0");
+        //    return 0;
+        //}
 
         if (indexotriz < indexmin)
         {
@@ -868,7 +868,7 @@ public class Program
             }
         }
         Console.WriteLine("сумма = " + sum);
-        // end
+        // end 14
 
         return sum;
     }
