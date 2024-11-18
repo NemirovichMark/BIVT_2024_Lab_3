@@ -266,6 +266,7 @@ public class Program
     public double[] Task_2_1(double[] array)
     {
         // code here
+        //Минимальный элемент заданного одномерного массива увеличить в два раза.
         double min = 10000000000;
         for (int i = 0; i < array.Length; i = i + 1) if (array[i]<= min) min = array[i];
         for (int i = 0; i < array.Length; i = i + 1) if (array[i] == min)
@@ -298,7 +299,7 @@ public class Program
         for (int i = 0; i < array.Length; i = i + 1) if (array[i] != min)
             {
                 if (array[i] >= 0) array[i] = 2 * array[i];
-                else array[i] = array[i] / 2;
+                if (array[i] < 0) array[i] = array[i]/2;
             }
             else break;
         // end
@@ -433,7 +434,7 @@ public class Program
                         k = k + 1;
                     }
             }
-            average = Math.Round(s / k, 3);
+            average = s / k;
         }
         
         // end
@@ -451,6 +452,7 @@ public class Program
     public double[] Task_2_11(double[] array, double P)
     {
         // code here
+        //Включить заданный элемент P после последнего положительного элемента массива.
         double poz = 0;
         int index = -1;
         double[] b = new double[array.Length + 1];
