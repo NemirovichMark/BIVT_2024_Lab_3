@@ -687,20 +687,18 @@ public class Program
     }
     public (double[], double[], double, double) Task_3_11(double a, double b, int n)
     {
-        var rand = new Random();
         double[] X = new double[n], Y = new double[n];
         double globalMax = -999999999, globalMin = 9999999999;
         for (int i = 0; i < n; i++)
         {
-            X[i] = a + rand.NextDouble() * (b + Math.Abs(a));
+            X[i] = a+(i*(b-a))/(n-1);
             Y[i] = Math.Cos(X[i]) + X[i] * Math.Sin(X[i]);
         }
-        for (int i = 1; i < Y.Length - 1; i++)
+        for (int i = 0; i < Y.Length; i++)
         {
-            if (Y[i] > Y[i - 1] && Y[i] > Y[i - 1]) globalMax = Y[i];
-            else if (Y[i] < Y[i - 1] && Y[i] < Y[i - 1]) globalMin = Y[i];
-        }
-
+            if (Y[i] > globalMax) globalMax = Y[i];
+            if (Y[i] < globalMin) globalMin = Y[i];            
+        }        
         return (X, Y, globalMax, globalMin);
     }
     public double[] Task_3_12(double[] array)
