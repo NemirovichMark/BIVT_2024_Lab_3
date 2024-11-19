@@ -762,33 +762,31 @@ public class Program
     #region Level 3
     public int[] Task_3_1(double[] array)
     {
-        int[] output = null;
+        //int[] output = null;
 
         // code here
-        double imax = array[0];
-        int k = 0;
+        double maxElem = array[0];
+        int cnt = 0;
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i] > imax)
+            if (array[i] > maxElem)
             {
-                imax = array[i];
+                maxElem = array[i];
+                cnt = 1;
+            }
+            else if (array[i] == maxElem)
+            {
+                cnt++;
             }
         }
+        int[] output = new int[cnt];
+        cnt = 0;
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i] == imax)
+            if (array[i] == maxElem)
             {
-                k++;
-            }
-        }
-        output = new int[k];
-        k = 0;
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] == imax)
-            {
-                output[k] = i;
-                k++;
+                output[cnt] = i;
+                cnt++;
             }
         }
         // end
