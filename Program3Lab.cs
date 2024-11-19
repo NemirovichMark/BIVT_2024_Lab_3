@@ -626,25 +626,22 @@ public class Program
     }
     public double[] Task_2_15(double[] A, double[] B, int k)
     {
-        k = k + 1;
-        if (k < 0) k = 0; 
-        if (k > A.Length) k = A.Length;
-
-        double[] output = new double[A.Length + B.Length];
-
-        for (int i = 0; i < k && i < A.Length; i++)
+        double[] output = new double[A.Length+B.Length];
+        if (k >= A.Length) return A;
+        // code here
+        for (int i = 0; i <=k; i++)
         {
             output[i] = A[i];
         }
-        for (int i = 0; i < B.Length; i++)
+        for (int i = k+1; i<k+1+B.Length; i++)
         {
-            output[i + k] = B[i];
+            output[i] = B[i - k - 1];
         }
-    
-        for (int i = k; i < A.Length; i++)
+        for (int i = k+1+B.Length; i< A.Length + B.Length; i++)
         {
-            output[i + B.Length] = A[i];  
+            output[i] = A[i - B.Length];
         }
+        // end
 
         return output;
     }
