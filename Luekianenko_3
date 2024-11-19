@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Metrics;
 using System.Linq.Expressions;
-using System.Net.Sockets;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics.Arm;
@@ -152,19 +151,9 @@ public class Program
     }
     public double[] Task_1_11(double[] array)
     {
-        int k = 0, k2 = 0;
-        // code here
-        for (int i = 0; i < array.Length; i++) if (array[i] > 0) k += 1;
-        double[] output = new double[k];
-        for (int i = 0; i < 10; i++)
-        {
-            if (array[i] > 0)
-            {
-                output[k2] = array[i];
-                k2 += 1;
-            }
-        }
+        double[] output = null;
 
+        // code here
 
         // end
 
@@ -176,37 +165,18 @@ public class Program
         int index = -1;
 
         // code here
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] < 0)
-            {
-                value = array[i];
-                index = i;
-            }
-        }
+
         // end
+
         return (value, index);
     }
     public (double[], double[]) Task_1_13(double[] array)
     {
         double[] even = new double[array.Length / 2];
         double[] odd = new double[array.Length/2];
-        int k1 = 0, k2 = 0;
-        // code here
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (i % 2 == 0)
-            {
-                even[k1] = array[i];
-                k1 += 1;
-            }
-            else
-            {
-                odd[k2] = array[i];
-                k2 += 1;
-            }
 
-        }
+        // code here
+
         // end
 
         return (even, odd);
@@ -216,11 +186,7 @@ public class Program
         double sum = 0;
 
         // code here
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] < 0) break;
-            else sum += array[i] * array[i];
-        }
+
         // end
 
         return sum;
@@ -230,15 +196,7 @@ public class Program
         double[] y = new double[x.Length];
 
         // code here
-        for (int i = 0; i < x.Length; i ++)
-        {
-            if (0.5 * Math.Log(x[i]) < 0)
-            {
-                y[i] = double.NaN;
-            }
-            else y[i] = Math.Round(0.5 * Math.Log(x[i]),2);
-            Console.WriteLine(y[i]);
-        }
+
         // end
 
         return y;
@@ -249,9 +207,18 @@ public class Program
     public double[] Task_2_1(double[] array)
     {
         // code here
-
+        double min = 92834798237;
+        int min_i = 91;
+        for (int i = 0; i < array.Length; i ++)
+        {
+            if (min > array[i])
+            {
+                min_i = i;
+                min = array[i];
+            }
+        }
+        array[min_i] = array[min_i] * 2;
         // end
-
         return array;
     }
     public double Task_2_2(double[] array)
@@ -259,23 +226,63 @@ public class Program
         double sum = 0;
 
         // code here
-
-        // end
+        double max = -10000;
+        int max_i = -1;
+        for (int i = 0; i < array.Length; i++)
+        {
+            if ((double)array[i] > max)
+            {
+                max_i = i;
+                max = array[i];
+            }
+        }
+        for (int i = 0; i < max_i; i++)
+        {
+            sum += array[i] ;
+        }
+            // end
 
         return sum;
     }
     public double[] Task_2_3(double[] array)
     {
-        // code here
+        double min = 984092384020;
+        int min_i = -1;
+        for (int i = 0; i < array.Length; i++)
+        {
+            if ((double)array[i] < min)
+            {
+                min_i = i;
+                min = array[i];
+            }
+        
+        }
+        Console.WriteLine(min_i);
+        for (int i = 0; i < min_i; i++)
+        {
+            if (array[i] > 0) array[i] = array[i] * 2;
+            else array[i] = array[i] / 2;
 
-        // end
-
+        }
         return array;
     }
     public double[] Task_2_4(double[] array)
     {
         // code here
-
+        double sum = 0, sr =  0, max = -100000;
+        int max_i = -1;
+        for (int i = 0; i < array.Length; i++)
+        {
+            sum += array[i];
+            if (max < array[i])
+            {
+                max = array[i];
+                max_i = i;  
+            }
+        }
+        sr = Math.Round(sum / array.Length,2);
+        
+        for (int i = max_i + 1; i < array.Length; i++) array[i] = sr;
         // end
 
         return array;
@@ -283,10 +290,33 @@ public class Program
     public double[] Task_2_5(double[] array)
     {
         // code here
-
-        // end
-
-        return array;
+        double max = -1000, min = 189479174;
+        int max_i = -1, min_i = 52, minus = 0, k = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (max < array[i])
+            {
+                max_i = i;
+                max = array[i];
+            }
+            if (min >array[i])
+            {
+                min_i = i;
+                min = array[i];
+            }
+        }
+        for (int i = min_i; i < max_i; i++) if (array[i] < 0) minus += 1;
+        double[] output = new double[minus];
+        for (int i = min_i + 1; i < max_i; i++) 
+        {
+            if (array[i] < 0)
+            {
+               
+                output[k] = array[i];
+                k += 1;
+            }
+        }
+        return output;
     }
     public double[] Task_2_6(double[] array, double P)
     {
