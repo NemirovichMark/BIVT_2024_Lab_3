@@ -14,7 +14,7 @@ public class Program
     {
         Program program = new Program();
         double[] first = { 0, 1.5, 1, 3, -2.2, -0.5, 3 };
-        program.Task_3_13(first);
+        program.Task_3_1(first);
     }
     #region Level 1
     public double[] Task_1_1(double[] array)
@@ -338,8 +338,16 @@ public class Program
                 n = array[i];
                 k = i;
             }
+
         }
-        array[k] = n * 2;
+        if(n > 0)
+        {
+            array[k] = n * 2;
+        }
+        else
+        {
+            array[k] = Math.Round(n / 2, 2);
+        }
         Console.WriteLine(array[k]);
         // end
 
@@ -410,9 +418,9 @@ public class Program
             }
 
         }
-        for(int v = Math.Min(k, t); v < Math.Max(k,t); v++)
+        for(int v = Math.Min(k, t) + 1; v < Math.Max(k,t); v++)
         {
-            if (array[v] < 0)
+            if (array[v] < 0 && array[v] != 0)
             {
                 n++;
             }
@@ -420,15 +428,20 @@ public class Program
         double[] b = new double[n];
         for(int i = Math.Min(k, t) + 1; i < Math.Max(k, t); i++)
         {
-            if (array[i] < 0)
+            if (array[i] < 0 && array[i] != 0)
             {
                 b[c] = array[i];
                 c++;
             }
         }
-        // end
+        array = b;
+        for (int i = 0; i < array.Length; i++)
+        {
+            Console.WriteLine(array[i]);
+        }
+            // end
 
-        return b;
+            return array;
     }
     public double[] Task_2_6(double[] array, double P)
     {
@@ -513,7 +526,7 @@ public class Program
         {
             return 0;
         }
-        average = Math.Round(s / count, 2);
+        average = s / count;
         Console.WriteLine(average);
 
         // end
@@ -607,23 +620,22 @@ public class Program
         double[] output = null;
 
         // code here
-        if (k < 0)
-            k = 0;
-
-        k++;
         int LA = A.Length, LB = B.Length;
-        output = new double[LA + LB];
-
-        for (int i = 0; i < LA; i++)
+        double[] b = new double[LA + LB];
+        for (int i = 0; i <= k; i++)
         {
-            if (i < k)
-                output[i] = A[i];
-            else if (i == k)
-            {
-                for (int j = 0; j < LB; j++)
-                    output[k + j] = B[j];
-            }
-            output[i + LB] = A[i];
+            b[i] = A[i];
+            Console.WriteLine(b[i]);
+        }
+        for (int i = 0; i < LB; i++)
+        {
+            b[i] = B[i];
+            Console.WriteLine(b[i]);
+        }
+        for (int i = k + 1; i < LA; i++)
+        {
+            b[i] = A[i];
+            Console.WriteLine(b[i]);
         }
         // end
 
@@ -687,7 +699,7 @@ public class Program
             if (count == 0)
                 return 0;
         }
-        average = Math.Round(s / count, 2);
+        average = s / count;
         Console.WriteLine(average);
         // end
 
@@ -745,32 +757,32 @@ public class Program
 
         // code here
         double max = array[0];
-        int imax = 0;
+        int imax = 0, n = 0;
+        int count = 0;
         for (int i = 0; i < array.Length; i++)
         {
-            if(array[i] > max)
+            if (array[i] > max)
             {
                 max = array[i];
+                count = 0;
             }
-        }
-        int count = 0, n = 0;
-        for (int i = 0; i < array.Length; i++)
-        {
             if (array[i] == max)
             {
                 count++;
             }
         }
-        int[] b = new int[count];
-        for(int i = 0; i < array.Length; i++)
-        {
-            if (array[i] == max)
-            {
-                b[n] = i;
-                n++;
-            }
-        }
-        output = b; 
+        Console.WriteLine(max);
+        Console.WriteLine(count);
+        //int[] b = new int[count];
+        //for(int i = 0; i < array.Length; i++)
+        //{
+        //    if (array[i] == max)
+        //    {
+        //        b[n] = i;
+        //        n++;
+        //    }
+        //}
+        //output = b; 
 
         // end
 
