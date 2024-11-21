@@ -17,7 +17,7 @@ public class Program
     {
         Program program = new Program();
         //program.Task_1_1(new int[] {1, 2, 3, 4, 5, 6});
-        //program.Task_3_8(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
+        program.Task_3_8(new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 });
     }
     #region Level 1
     public double[] Task_1_1(double[] array)
@@ -341,7 +341,11 @@ public class Program
                 indMin = i;
             }        
         }
-        array[indMin] = minValue * 2;
+        if (array[indMin] < 0) {
+            array[indMin] = minValue / 2;
+        } else {
+            array[indMin] = minValue * 2;
+        }
         // end
 
         return array;
@@ -447,7 +451,7 @@ public class Program
         }
 
         int cnt = 0;
-        for (int k = Math.Min(indMax, indMin); k < Math.Max(indMax, indMin); k++)
+        for (int k = Math.Min(indMax, indMin)+1; k < Math.Max(indMax, indMin); k++)
         {
             if (array[k] < 0)
                 cnt++;
@@ -463,15 +467,13 @@ public class Program
                 indNew++;
             }
         }
-
         // end
-
         return newArr;
     }
     public double[] Task_2_6(double[] array, double P)
     {
         // code here
-
+        
         // end
 
         return array;
@@ -546,7 +548,7 @@ public class Program
         if (cnt == 0)
             return 0;
 
-        average = Math.Round(sum / cnt, 2);
+        average = Math.Round(sum / cnt, 4);
         // end
 
         return average;
@@ -629,13 +631,17 @@ public class Program
         double[] output = null;
 
         // code here
+        int lengthArrA = A.Length, lengthArrB = B.Length;
+        output = new double [lengthArrA + lengthArrB];
+
+        if (k == lengthArrA || k > lengthArrA)
+            return A;
+
         if (k < 0)
             k = 0;
         
         k++;
-        int lengthArrA = A.Length, lengthArrB = B.Length;
-        output = new double [lengthArrA + lengthArrB];
-
+        
         for (int i = 0; i < A.Length; i++)
         {
             if (i < k)
@@ -648,7 +654,6 @@ public class Program
             output[i + lengthArrB] = A[i];
         }
         // end
-
         return output;
     }
     public int[] Task_2_16(double[] array)
@@ -700,7 +705,7 @@ public class Program
             
             if (cntPos == 0)
                 return 0;
-            average = Math.Round(sumPos / cntPos, 2);
+            average = Math.Round(sumPos / cntPos, 3);
         }
         else
         {
