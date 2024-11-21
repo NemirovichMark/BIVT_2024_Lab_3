@@ -14,9 +14,7 @@ public class Program
     {
         Program program = new Program();
         double[] first = { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
-        double[] second = { 5, 2, 8, 1, 9, 10 };
-        int k = 7;
-        program.Task_2_15(first, second, k);
+        program.Task_2_1(first);
     }
     #region Level 1
     public double[] Task_1_1(double[] array)
@@ -342,14 +340,7 @@ public class Program
             }
 
         }
-        if(n > 0)
-        {
-            array[k] = n * 2;
-        }
-        else
-        {
-            array[k] = Math.Round(n / 2, 2);
-        }
+        array[k] = n * 2;
         Console.WriteLine(array[k]);
         // end
 
@@ -528,7 +519,7 @@ public class Program
         {
             return 0;
         }
-        average = s / count;
+        average = Math.Round(s / count, 2);
         Console.WriteLine(average);
 
         // end
@@ -707,7 +698,7 @@ public class Program
             if (count == 0)
                 return 0;
         }
-        average = s / count;
+        average = Math.Round(s / count, 2);
         Console.WriteLine(average);
         // end
 
