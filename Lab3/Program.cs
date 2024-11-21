@@ -13,8 +13,10 @@ public class Program
     public static void Main()
     {
         Program program = new Program();
-        double[] first = { 0, 1.5, 1, 3, -2.2, -0.5, 3 };
-        program.Task_3_1(first);
+        double[] first = { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+        double[] second = { 5, 2, 8, 1, 9, 10 };
+        int k = 7;
+        program.Task_2_15(first, second, k);
     }
     #region Level 1
     public double[] Task_1_1(double[] array)
@@ -622,19 +624,25 @@ public class Program
         // code here
         int LA = A.Length, LB = B.Length;
         double[] b = new double[LA + LB];
+        if (k >= LA) return A;
         for (int i = 0; i <= k; i++)
         {
             b[i] = A[i];
-            Console.WriteLine(b[i]);
+            //Console.WriteLine(b[i]);
         }
-        for (int i = 0; i < LB; i++)
+        for (int i = k + 1; i < k + 1 + LB; i++)
         {
-            b[i] = B[i];
-            Console.WriteLine(b[i]);
+            b[i] = B[i - k - 1];
+            //Console.WriteLine(b[i]);
         }
-        for (int i = k + 1; i < LA; i++)
+        for (int i = k + 1 + B.Length; i < A.Length + B.Length; i++)
         {
-            b[i] = A[i];
+            b[i] = A[i - B.Length];
+            //Console.WriteLine(b[i]);
+        }
+        output = b;
+        for (int i = 0; i < b.Length; i++)
+        {
             Console.WriteLine(b[i]);
         }
         // end
@@ -771,18 +779,16 @@ public class Program
                 count++;
             }
         }
-        Console.WriteLine(max);
-        Console.WriteLine(count);
-        //int[] b = new int[count];
-        //for(int i = 0; i < array.Length; i++)
-        //{
-        //    if (array[i] == max)
-        //    {
-        //        b[n] = i;
-        //        n++;
-        //    }
-        //}
-        //output = b; 
+        int[] b = new int[count];
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] == max)
+            {
+                b[n] = i;
+                n++;
+            }
+        }
+        output = b;
 
         // end
 
