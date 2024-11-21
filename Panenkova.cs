@@ -650,19 +650,19 @@ public class Program
                 break;
             }
         }
-        if (nech_p == 0)
-            return sum;
-        if (mini_p > nech_p)
+        for (int i = 0; i < array.Length; i++)
         {
-            for (int i = 0; i < array.Length; i++)
+            if (nech == 0)
+            {
+                if (i % 2 != 0)
+                    sum += array[i];
+            }
+            else if (nech_p < mini_p)
             {
                 if (i % 2 == 0)
                     sum += array[i];
             }
-        }
-        else
-        {
-            for (int i = 0; i < array.Length; i++)
+            else
             {
                 if (i % 2 != 0)
                     sum += array[i];
@@ -676,29 +676,30 @@ public class Program
     #region Level 3
     public int[] Task_3_1(double[] array)
     {
-        double maxi = -99999; int maxi_k = 0; int k = 0;
+        double maxi = -99999; int k = 0;
         // code here
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] > maxi)
-                maxi = array[i];
-        }
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] == maxi)
-                maxi_k++;
-        }
-        int[] output = new int[maxi_k];
+        int[] output = new int[array.Length];
         for (int i = 0; i < array.Length; i++)
         {
             if (array[i] == maxi)
             {
-                output[k] = i;
                 k++;
+                output[k] = i;
+            }
+            if (array[i] > maxi)
+            {
+                maxi = array[i];
+                k = 0;
+                output[k] = i;
             }
         }
+        int [] itog = new int[k + 1];
+        for (int i = 0; i < itog.Length; i++)
+        {
+            itog[i] = output[i];
+        }
         // end
-        return output;
+        return itog;
     }
     public double[] Task_3_2(double[] array)
     {
