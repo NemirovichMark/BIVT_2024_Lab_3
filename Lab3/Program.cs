@@ -340,7 +340,14 @@ public class Program
             }
 
         }
-        array[k] = n * 2;
+        if(n > 0)
+        {
+            array[k] = n * 2;
+        }
+        else
+        {
+            array[k] = Math.Round(n / 2, 2);
+        }
         Console.WriteLine(array[k]);
         // end
 
@@ -519,7 +526,7 @@ public class Program
         {
             return 0;
         }
-        average = Math.Round(s / count, 2);
+        average = s / count;
         Console.WriteLine(average);
 
         // end
@@ -698,7 +705,7 @@ public class Program
             if (count == 0)
                 return 0;
         }
-        average = Math.Round(s / count, 2);
+        average = s / count;
         Console.WriteLine(average);
         // end
 
