@@ -279,7 +279,14 @@ public class Program
         {
             if (array[j] == min)
             {
-                array[j] *= 2;
+                if (min < 0)
+                {
+                    array[j] /= 2;
+                }
+                else
+                {
+                    array[j] *= 2;
+                }
                 break;
             }
         }
@@ -452,7 +459,7 @@ public class Program
         }
         if (cnt == 0)
             return 0.0;
-        average = Math.Round(sum / cnt,2);
+        average = sum / cnt;
         
         return average;
     }
@@ -466,6 +473,20 @@ public class Program
     }
     public double[] Task_2_11(double[] array, double P)
     {
+        bool hasPos = false;
+
+        foreach (double x in array)
+        {
+            if (x > 0)
+            {
+                hasPos = true;
+                break;
+            }
+        }
+        if (!hasPos)
+        {
+            return array;
+        }
         int last = -1;
         for (int i = 0; i < array.Length; i++)
         {
@@ -596,7 +617,7 @@ public class Program
                     cntPos++;
                 }
             }
-            avg = Math.Round(sumPos / cntPos,2);
+            avg = sumPos / cntPos;
 
         }     
         else
@@ -613,7 +634,7 @@ public class Program
             }
             if (cntNeg == 0)
                 return 0.0;
-            avg = Math.Round(sumNeg / cntNeg,2);
+            avg = sumNeg / cntNeg;
         }
   
         return avg;
@@ -662,29 +683,30 @@ public class Program
     public int[] Task_3_1(double[] array)
     {
         double max = double.MinValue;
-        int Ind = 0;
-        int cnt = 0;
-        for (int i = 0;i < array.Length; i++)
+        int cntMax = 0;
+        int[] Ind = new int[array.Length]; 
+
+        for (int i = 0; i < array.Length; i++)
         {
             if (array[i] > max)
-                max = array[i];
-        }
-        for (int i = 0;i < array.Length; i++)
-        {
-            if (array[i] == max)
-                cnt++;
-        }
-        int[] output = new int[cnt];
-        for (int i = 0;i < array.Length; i++)
-        {
-            if (array[i] == max)
             {
-                output[Ind] = i;
-                Ind++;
+                max = array[i];                    
+                cntMax = 1;                        
+                Ind[0] = i;               
+            }
+            else if (array[i] == max)
+            {
+                cntMax++;                          
+                Ind[cntMax - 1] = i;      
             }
         }
+        int[] result = new int[cntMax];
+        for (int i = 0; i < cntMax; i++)
+        {
+            result[i] = Ind[i];
+        }
 
-        return output;
+        return result;
     }
     public double[] Task_3_2(double[] array)
     {
