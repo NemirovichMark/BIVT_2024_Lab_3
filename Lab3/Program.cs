@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -280,7 +280,7 @@ public class Program
             {
                 y[i] = double.NaN;
             }
-            else { y[i] = Math.Round(0.5*Math.Log(x[i])); }
+            else { y[i] = (0.5*Math.Log(x[i])); }
             Console.WriteLine($"{x[i]}{y[i]}");
         }
         // end
@@ -307,7 +307,8 @@ public class Program
         { 
             if (i==indm)
             {
-                array[i] = 2 * array[i];
+                if (array[i]> 0) { array[i] = 2 * array[i]; }
+                else if (array[i]< 0) { array[i] =  array[i]/2; }
             }
         }
             // end
@@ -462,7 +463,6 @@ public class Program
             k+=1;
         }
 
-        average = Math.Round(average,2);
         return average;
     }
     public double[] Task_2_10(double[] array)
@@ -477,14 +477,26 @@ public class Program
     {
 
         // code here
+        bool m = false;
+        for (int i = 0; i< array.Length; i++)
+        {
+            if (array[i] < 0)
+            {
+                m = true;
+            }
+        }
         for (int i= 0; i< array.Length; i++) 
         { 
             if (array[i] >0){ int indp = i; }
         }
         double[] array2 = new double[array.Length+1];
-        for (int i = 0; i< array2.Length-1; i++)
+        array2 = array;
+        if (m == true)
         {
-            array2[i] = array[i];
+            for (int i = 0; i< array2.Length-1; i++)
+            {
+                array2[i] = array[i];
+            }
         }
         array2[array.Length] = P;
         // end
@@ -590,7 +602,7 @@ public class Program
                 if (x<0) { s+= x; k+=1;}}
         if (k>0)
         {
-            average = Math.Round(s/k, 2);
+            average = s/k;
         }
         else { average = 0; }
             
