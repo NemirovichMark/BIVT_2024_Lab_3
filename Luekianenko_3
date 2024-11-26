@@ -25,7 +25,7 @@ public class Program
         // code here
         for (int i = 0; i < array.Length; i++) sum += array[i];
         for (int i = 0; i < array.Length; i++) array[i] = Math.Round(array[i] / sum, 2);
-            // end
+        // end
         return array;
     }
     public double[] Task_1_2(double[] array)
@@ -42,16 +42,16 @@ public class Program
             }
         }
         sr = sum / n;
-        for (int i = 0; i < array.Length; i++) 
+        for (int i = 0; i < array.Length; i++)
         {
             if (array[i] > 0)
             {
                 array[i] = sr;
-                
+
             }
             array[i] = Math.Round(array[i], 2);
         }
-            // end
+        // end
 
         return array;
     }
@@ -109,7 +109,7 @@ public class Program
     {
         // code here
         double sr = 0, n = 0;
-        for (int i = 0; i < array.Length; i ++)
+        for (int i = 0; i < array.Length; i++)
         {
             sr += array[i];
             n += 1;
@@ -125,7 +125,7 @@ public class Program
         int count = 0;
 
         // code here
-        for (int i = 0; i < array.Length;i++) if (array[i] < 0) count++;
+        for (int i = 0; i < array.Length; i++) if (array[i] < 0) count++;
         // end
 
         return count;
@@ -135,9 +135,9 @@ public class Program
         int count = 0;
         double sr = 0;
         // code here
-        for (int i = 0;i < array.Length;i++) sr += array[i];
+        for (int i = 0; i < array.Length; i++) sr += array[i];
         sr = sr / array.Length;
-        for (int i = 0; i < array.Length; i++) if (array[i] > sr) count += 1; 
+        for (int i = 0; i < array.Length; i++) if (array[i] > sr) count += 1;
         // end
 
         return count;
@@ -192,7 +192,7 @@ public class Program
     public (double[], double[]) Task_1_13(double[] array)
     {
         double[] even = new double[array.Length / 2];
-        double[] odd = new double[array.Length/2];
+        double[] odd = new double[array.Length / 2];
         int k1 = 0, k2 = 0;
         // code here
         for (int i = 0; i < array.Length; i++)
@@ -205,7 +205,7 @@ public class Program
             else
             {
                 odd[k2] = array[i];
-                k2 += 1;    
+                k2 += 1;
             }
         }
         // end
@@ -217,7 +217,7 @@ public class Program
         double sum = 0;
 
         // code here
-        for(int i = 0; i < array.Length; i++)
+        for (int i = 0; i < array.Length; i++)
         {
             if (array[i] < 0) break;
             sum += Math.Pow(array[i], 2);
@@ -234,7 +234,7 @@ public class Program
         for (int i = 0; i < x.Length; i++)
         {
             if (0.5 * Math.Log(x[i]) < 0) y[i] = double.NaN;
-            else y[i] = Math.Round(0.5 * Math.Log(x[i]),2);
+            else y[i] = Math.Round(0.5 * Math.Log(x[i]), 2);
         }
         // end
 
@@ -248,7 +248,7 @@ public class Program
         // code here
         double min = 92834798237;
         int min_i = 91;
-        for (int i = 0; i < array.Length; i ++)
+        for (int i = 0; i < array.Length; i++)
         {
             if (min > array[i])
             {
@@ -277,9 +277,9 @@ public class Program
         }
         for (int i = 0; i < max_i; i++)
         {
-            sum += array[i] ;
+            sum += array[i];
         }
-            // end
+        // end
 
         return sum;
     }
@@ -294,7 +294,7 @@ public class Program
                 min_i = i;
                 min = array[i];
             }
-        
+
         }
         Console.WriteLine(min_i);
         for (int i = 0; i < min_i; i++)
@@ -308,7 +308,7 @@ public class Program
     public double[] Task_2_4(double[] array)
     {
         // code here
-        double sum = 0, sr =  0, max = -100000;
+        double sum = 0, sr = 0, max = -100000;
         int max_i = -1;
         for (int i = 0; i < array.Length; i++)
         {
@@ -316,11 +316,11 @@ public class Program
             if (max < array[i])
             {
                 max = array[i];
-                max_i = i;  
+                max_i = i;
             }
         }
-        sr = Math.Round(sum / array.Length,2);
-        
+        sr = Math.Round(sum / array.Length, 2);
+
         for (int i = max_i + 1; i < array.Length; i++) array[i] = sr;
         // end
 
@@ -338,7 +338,7 @@ public class Program
                 max_i = i;
                 max = array[i];
             }
-            if (min >array[i])
+            if (min > array[i])
             {
                 min_i = i;
                 min = array[i];
@@ -346,11 +346,11 @@ public class Program
         }
         for (int i = min_i; i < max_i; i++) if (array[i] < 0) minus += 1;
         double[] output = new double[minus];
-        for (int i = min_i + 1; i < max_i; i++) 
+        for (int i = min_i + 1; i < max_i; i++)
         {
             if (array[i] < 0)
             {
-               
+
                 output[k] = array[i];
                 k += 1;
             }
@@ -364,7 +364,7 @@ public class Program
         int l = array.Length;
         for (int i = 0; i < array.Length; i++) sr += array[i];
         sr = sr / array.Length;
-        
+
         for (int i = 0; i < array.Length; i++)
         {
 
@@ -382,7 +382,7 @@ public class Program
                 for (int j = i + 1; j < output.Length; j++)
                 {
                     output[j] = array[j - 1];
-                    
+
                 }
                 output[i + 1] = P;
                 output[i] = msr;
@@ -393,7 +393,7 @@ public class Program
                 output[i] = array[i];
             }
         }
-            // end
+        // end
 
         return output;
     }
@@ -401,8 +401,8 @@ public class Program
     {
         // code here
         double max = double.MinValue;
-        for (int i = 0; i < array.Length ; i++) if (max < array[i]) max = array[i];
-        for (int i = 0; i < array.Length ; i ++)
+        for (int i = 0; i < array.Length; i++) if (max < array[i]) max = array[i];
+        for (int i = 0; i < array.Length; i++)
         {
             if ((array[i] == max) && (i + 1 != array.Length))
             {
@@ -413,10 +413,10 @@ public class Program
                 }
                 else
                     array[i + 1] /= 2;
-                    break;
+                break;
             }
         }
-            // end
+        // end
 
         return array;
     }
@@ -425,9 +425,9 @@ public class Program
         // code here
         double max = double.MinValue, min = double.MaxValue, kn = 0;
         int max_i = 0, min_i = 0;
-        for (int i = 0; i < array.Length; i++) 
+        for (int i = 0; i < array.Length; i++)
         {
-            if (max < array[i]) 
+            if (max < array[i])
             {
                 max_i = i;
                 max = array[i];
@@ -435,7 +435,7 @@ public class Program
         }
         for (int i = max_i; i < array.Length; i++)
         {
-            if (min > array[i]) 
+            if (min > array[i])
             {
                 min_i = i;
                 min = array[i];
@@ -461,7 +461,7 @@ public class Program
             {
                 max_i = i;
                 max = array[i];
-                
+
             }
         }
         for (int i = 0; i < array.Length; i++)
@@ -469,7 +469,7 @@ public class Program
             if (min > array[i])
             {
                 min_i = i;
-                min = array[i];   
+                min = array[i];
             }
         }
         Console.WriteLine(min_i);
@@ -483,7 +483,7 @@ public class Program
             }
         }
         else
-        if (min_i < max_i) 
+        if (min_i < max_i)
         {
             for (int i = min_i + 1; i < max_i; i++)
             {
@@ -498,8 +498,8 @@ public class Program
             k1 = 1;
         }
         average = Math.Round(average / k1, 2);
-       
-        
+
+
         // end
 
         return average;
@@ -509,13 +509,13 @@ public class Program
         // code here
         int k = 0;
         double min = double.MaxValue;
-        for (int i  = 0; i < array.Length; i++) if ((array[i] > 0) && (min > array[i])) min = array[i];
+        for (int i = 0; i < array.Length; i++) if ((array[i] > 0) && (min > array[i])) min = array[i];
 
         double[] output = new double[array.Length - 1];
         if (min == double.MaxValue) return array;
-        for (int i  = 0; i < array.Length; i++)
+        for (int i = 0; i < array.Length; i++)
         {
-            
+
             if ((array[i] == min)) continue;
             else
             {
@@ -523,9 +523,9 @@ public class Program
                 k += 1;
             }
         }
-        for (int i = 0;i < output.Length;i ++) Console.WriteLine(output[i]);    
+        for (int i = 0; i < output.Length; i++) Console.WriteLine(output[i]);
         // end
-       
+
         return output;
     }
     public double[] Task_2_11(double[] array, double P)
@@ -540,7 +540,7 @@ public class Program
         {
             if (i == Last_elem)
             {
-                for (int j = i + 1; j < output.Length ; j++)
+                for (int j = i + 1; j < output.Length; j++)
                 {
                     output[j] = array[j - 1];
                 }
@@ -561,7 +561,7 @@ public class Program
     }
     public double[] Task_2_12(double[] array)
     {
-     
+
         // code he
         double max = double.MinValue, sum = 0;
         int max_i = 0;
@@ -573,7 +573,7 @@ public class Program
                 max = array[i];
             }
         }
-        for (int i = max_i + 1;i < array.Length; i++)  sum += array[i];
+        for (int i = max_i + 1; i < array.Length; i++) sum += array[i];
         sum = Math.Round(sum, 2);
         for (int i = 0; i < array.Length; i++)
         {
@@ -611,7 +611,7 @@ public class Program
         // code here
         double max = double.MinValue, zamena = 0;
         int max_i = 0, min_1 = -1;
-        for (int i = 0; i < array.Length; i ++)
+        for (int i = 0; i < array.Length; i++)
         {
             if (max < array[i])
             {
@@ -640,12 +640,12 @@ public class Program
         int n = 0;
         // code here
         if (A.Length <= k) return A;
-        for (int i = 0; i < output.Length;i++)
+        for (int i = 0; i < output.Length; i++)
         {
             output[i] = A[n];
             if (i == k + 1)
             {
-                for (int j = 0; j < B.Length; j ++)
+                for (int j = 0; j < B.Length; j++)
                 {
                     output[i] = B[j];
                     i += 1;
@@ -661,11 +661,11 @@ public class Program
     }
     public int[] Task_2_16(double[] array)
     {
-        
+
         double sr = 0;
         int n = 0;
         // code here
-        for (int i = 0; i < array.Length; i ++ ) sr += array[i];
+        for (int i = 0; i < array.Length; i++) sr += array[i];
         sr /= array.Length;
         for (int i = 0; i < array.Length; i++) if (array[i] < sr) n += 1;
         int[] output = new int[n];
@@ -678,7 +678,7 @@ public class Program
                 n += 1;
             }
         }
-                // end
+        // end
 
         return output;
     }
@@ -726,7 +726,7 @@ public class Program
         }
         // end
 
-        return Math.Round(average/n,2);
+        return Math.Round(average / n, 2);
     }
     public double[] Task_2_18(double[] array)
     {
@@ -735,7 +735,7 @@ public class Program
         for (int i = 0; i < array.Length; i += 2) if (array[i] > max_ch) max_ch = array[i];
         for (int i = 1; i < array.Length; i += 2) if (array[i] > max_nch) max_nch = array[i];
         if (max_ch > max_nch) for (int i = 0; i < array.Length / 2; i++) array[i] = 0;
-        else for (int i = array.Length /2; i < array.Length; i++) array[i] = 0;
+        else for (int i = array.Length / 2; i < array.Length; i++) array[i] = 0;
         // end
         return array;
     }
@@ -744,7 +744,7 @@ public class Program
         // code here
         double max = double.MinValue, sum = 0;
         int max_i = 0;
-        for (int i = 0;i < array.Length;i++)
+        for (int i = 0; i < array.Length; i++)
         {
             if (max < array[i])
             {
@@ -760,12 +760,26 @@ public class Program
     }
     public double Task_2_20(double[] array)
     {
-        double sum = 0;
-
+        double sum = 0, min = double.MaxValue, perv_o = double.MaxValue;
+        int min_i = 0, perv_i = 0;
         // code here
-        
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (min > array[i])
+            {
+                min = array[i];
+                min_i = i;
+            }
+            if ((array[i] < 0) && (perv_o == double.MaxValue))
+            {
+                perv_o = array[i];
+                perv_i = i;
+            }
+        }
+        if (perv_o == double.MaxValue) return 0;
+        if (min_i != perv_i) for (int i = 0; i < array.Length; i += 2) sum += array[i];
+        else for (int i = 1; i < array.Length; i += 2) sum += array[i];
         // end
-
         return sum;
     }
     #endregion
@@ -791,9 +805,17 @@ public class Program
     public double[] Task_3_3(double[] array)
     {
         // code here
-
+        double max = double.MinValue, Zamena = 0;
+        for (int i = 0; i < array.Length; i++) if (max < array[i]) max = array[i];
+        for (int i = 0; i < array.Length; i += 2)
+        {
+            if ((array[i + 1] == max) || (array[i] == max)) break;
+            Zamena = array[i];
+            array[i] = array[i + 1];
+            array[i + 1] = Zamena;
+        }
+        for (int i = 0; i < array.Length; i++) Console.Write(array[i] + " ");
         // end
-
         return array;
     }
     public double[] Task_3_4(double[] array)
@@ -814,12 +836,15 @@ public class Program
     }
     public int Task_3_6(double[] array)
     {
-        int count = 0;
-
+        int count = 0, cp = 1;
         // code here
-
+        for (int i = 0; i < array.Length - 1; i++)
+        {
+            if (array[i] > array[i + 1]) cp += 1;
+            else cp = 1;
+            if (count < cp) count = cp;
+        }
         // end
-
         return count;
     }
     public double[] Task_3_7(double[] array)
@@ -840,10 +865,18 @@ public class Program
     }
     public int Task_3_9(double[] array)
     {
-        int count = 0;
+        int count = 0, cp = 1, cp2 = 1;
 
         // code here
-
+        for (int i = 0; i < array.Length - 1; i++)
+        {
+            if (array[i] > array[i + 1]) cp += 1;
+            else cp = 1;
+            if (array[i] < array[i + 1]) cp2 += 1;
+            else cp2 = 1;
+            if (count < cp) count = cp;
+            if (count < cp2) count = cp2;
+        }
         // end
 
         return count;
@@ -865,15 +898,27 @@ public class Program
 
         // end
 
-        return (X, Y, globalMax,globalMin);
+        return (X, Y, globalMax, globalMin);
     }
     public double[] Task_3_12(double[] array)
     {
         // code here
-
+        int c = 0, k = 0;
+        for (int i = 0; i < array.Length; i++) if (array[i] >= 0) c += 1;
+        double[] X = new double[0];
+        if (c == 0) return X;
+        double[] output = new double[c];
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] >= 0)
+            {
+                output[k] = array[i];
+                k += 1;
+            }
+        }
         // end
-
-        return array;
+        for (int i = 0; i < output.Length; i ++) Console.Write(output[i] + "  ");
+        return output;
     }
     public double[] Task_3_13(double[] array)
     {
