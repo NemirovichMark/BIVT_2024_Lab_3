@@ -616,7 +616,6 @@ public class Program
     {
         int[] output = null;
 
-        // code here
         double sum = 0;
 
         for (int i = 0; i < array.Length; i++)
@@ -626,18 +625,29 @@ public class Program
 
         double sr = sum / array.Length;
 
+        int count = 0;
 
-        List<int> indices = new List<int>();
         for (int i = 0; i < array.Length; i++)
         {
             if (array[i] < sr)
             {
-                indices.Add(i);
+                count++;
+            }
+        }
+
+        output = new int[count];
+        int index = 0;
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] < sr)
+            {
+                output[index++] = i;
             }
         }
         // end
 
-        return indices.ToArray();
+        return output;
     }
     public double Task_2_17(double[] array)
     {
@@ -768,25 +778,38 @@ public class Program
         int[] output = null;
 
         // code here
-        double khinkali = double.MinValue; 
-        List<int> maxIndices = new List<int>();
+        double khinkali = -1;
+        int cnt = 0;
 
         for (int i = 0; i < array.Length; i++)
         {
             if (array[i] > khinkali)
             {
-                khinkali = array[i]; 
-                maxIndices.Clear(); 
-                maxIndices.Add(i); 
+                khinkali = array[i];
+                cnt = 1;
             }
             else if (array[i] == khinkali)
             {
-                maxIndices.Add(i); 
+                cnt++;
+            }
+        }
+
+        if (cnt == 0)
+            return output;
+
+        output = new int[cnt];
+        int index = 0;
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] == khinkali)
+            {
+                output[index++] = i; 
             }
         }
         // end
 
-        return maxIndices.ToArray();
+        return output;
     }
     public double[] Task_3_2(double[] array)
     {
@@ -861,27 +884,55 @@ public class Program
     public double[] Task_3_7(double[] array)
     {
         // code here
-        List<double> plusvibenums = new List<double>();
-        List<double> minusvibenums = new List<double>();
+        int poloj = 0;
+        int otric = 0;
 
-        foreach (double maratik in array)
+        foreach (double num in array)
         {
-            if (maratik >= 0)
+            if (num >= 0)
             {
-                plusvibenums.Add(maratik);
+                poloj++;
             }
             else
             {
-                minusvibenums.Add(maratik);
+                otric++;
             }
         }
 
-        plusvibenums.AddRange(minusvibenums);
+        double[] polnumbers = new double[poloj];
+        double[] otrnumbers = new double[otric];
 
+        int polojind = 0;
+        int otricind = 0;
+
+        foreach (double num in array)
+        {
+            if (num >= 0)
+            {
+                polnumbers[polojind++] = num;
+            }
+            else
+            {
+                otrnumbers[otricind++] = num;
+            }
+        }
+
+        double[] result = new double[array.Length];
+        int index = 0;
+
+        foreach (double num in polnumbers)
+        {
+            result[index++] = num;
+        }
+
+        foreach (double num in otrnumbers)
+        {
+            result[index++] = num;
+        }
 
         // end
 
-        return plusvibenums.ToArray();
+        return result;
     }
     public double[] Task_3_8(double[] array)
     {
@@ -938,18 +989,18 @@ public class Program
     public double[] Task_3_13(double[] array)
     {
         // code here
-        double[]   dora = new double[array.Length];
-        int uniq = 0; 
+        double[] dora = new double[array.Length];
+        int uniq = 0;
 
         for (int i = 0; i < array.Length; i++)
         {
-            bool shelli = false; 
+            bool shelli = false;
 
             for (int j = 0; j < uniq; j++)
             {
                 if (array[i] == dora[j])
                 {
-                    shelli = true; 
+                    shelli = true;
                     break;
                 }
             }
@@ -957,12 +1008,17 @@ public class Program
             if (!shelli)
             {
                 dora[uniq] = array[i];
-                uniq++; 
+                uniq++;
             }
         }
 
         double[] result = new double[uniq];
-        Array.Copy(dora, result, uniq);
+
+        for (int i = 0; i < uniq; i++)
+        {
+            result[i] = dora[i];
+        }
+
         // end
 
         return result;
