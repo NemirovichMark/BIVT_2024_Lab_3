@@ -330,7 +330,7 @@ public class Program
     public double[] Task_2_5(double[] array)
     {
         // code here
-        double max = -1000, min = 189479174;
+        double max = -1000000, min = 189479174;
         int max_i = -1, min_i = 52, minus = 0, k = 0;
         for (int i = 0; i < array.Length; i++)
         {
@@ -345,7 +345,7 @@ public class Program
                 min = array[i];
             }
         }
-        for (int i = min_i; i < max_i; i++) if (array[i] < 0) minus += 1;
+        for (int i = min_i + 1; i < max_i; i++) if (array[i] < 0) minus += 1;
         if (max_i < min_i) { array = new double[0]; return array; }
         double[] output = new double[minus];
         for (int i = min_i + 1; i < max_i; i++) 
