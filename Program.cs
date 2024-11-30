@@ -758,7 +758,7 @@ public class Program
 
         // code here
         X = new double[n]; Y = new double[n];
-        double s = Math.Round((b - a) / (n - 1),2);
+        double s = (b - a) / (n - 1);
         int k = 0;
         for (double i = a; i <= b; i += s)
         {
