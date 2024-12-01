@@ -821,7 +821,22 @@ public class Program
                 even[num] = array[i];
                 num++;
             }
-            Array.Sort(even);
+            for (int i = 0; i < even.Length - 1; i++)
+            {
+                double min = even[i];
+                int imin = i;
+                for (int j = i+1; j < even.Length; j++)
+                {
+                    if (even[j] < min)
+                    {
+                        min = even[j];
+                        imin = j;
+                    }
+                }
+                even[imin] = even[i];
+                even[i] = min;
+            }
+            //Array.Sort(even);
             num = 0;
             for (int i = 0; i < array.Length; i += 2)
             {
@@ -837,7 +852,22 @@ public class Program
                 even[num] = array[i];
                 num++;
             }
-            Array.Sort(even);
+            for (int i = 0; i < even.Length - 1; i++)
+            {
+                double min = even[i];
+                int imin = i;
+                for (int j = i + 1; j < even.Length; j++)
+                {
+                    if (even[j] < min)
+                    {
+                        min = even[j];
+                        imin = j;
+                    }
+                }
+                even[imin] = even[i];
+                even[i] = min;
+            }
+            //Array.Sort(even);
             num = 0;
             for (int i = 0; i < array.Length; i += 2)
             {
@@ -952,8 +982,8 @@ public class Program
         double min = double.MaxValue;
         for(int i = 0; i < n; i++)
         {
-            X[i] = Math.Round(a + i*step,2);
-            Y[i] = Math.Round(Math.Cos(X[i]) + X[i]*Math.Sin(X[i]),2);
+            X[i] = a + i*step;
+            Y[i] = Math.Cos(X[i]) + X[i]*Math.Sin(X[i]);
         }
         for(int i = 1; i < n - 1; i++)//локальные экстремумы
         {
@@ -1005,7 +1035,26 @@ public class Program
         double[] normalizedArray = null;
 
         // code here
-
+        double max = array[0], min = array[0];
+        for (int i = 1; i < array.Length; i++)
+        {
+            if (array[i] > max)
+            {
+                max = array[i];
+            }
+        }
+        for (int i = 1; i < array.Length; i++)
+        {
+            if (array[i] < min)
+            {
+                min = array[i];
+            }
+        }
+        normalizedArray = new double[array.Length];
+        for (int i = 0; i < array.Length; i++)
+        {
+            normalizedArray[i] = Math.Round(2 * (array[i] - min) / (max - min) - 1, 2);
+        }
         // end
 
         return normalizedArray;
