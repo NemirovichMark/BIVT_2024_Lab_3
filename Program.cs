@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -914,7 +914,25 @@ public class Program
         double[] normalizedArray = null;
 
         // code here
-
+        int maxi = 0, mini = 0;
+        double x = 0;
+        normalizedArray = new double[array.Length];
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > array[maxi])
+            {
+                maxi = i;
+            }
+            if (array[i] < array[mini])
+            {
+                mini = i;
+            }
+        }
+        x = 2 / (array[maxi] - array[mini]);
+        for (int j = 0; j < array.Length; j++)
+        {
+            normalizedArray[j] = (array[j] - array[mini]) * x - 1;
+        }
         // end
 
         return normalizedArray;
