@@ -1,4 +1,4 @@
-using Microsoft.VisualBasic;
+﻿using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -477,29 +477,23 @@ public class Program
     {
 
         // code here
-        bool m = false;
-        for (int i = 0; i< array.Length; i++)
-        {
-            if (array[i] < 0)
-            {
-                m = true;
-            }
-        }
+        
+        int indp = -1;
+        int kp = 0;
         for (int i= 0; i< array.Length; i++) 
         { 
-            if (array[i] >0){ int indp = i; }
+            if (array[i] >0){ indp = i; kp++; }
         }
-        double[] array2 = new double[array.Length+1];
-        array2 = array;
-        if (m == true)
+        if (indp == -1) { return array; }
+        double[] array2 = new double[array.Length + 1];
+        
+        int k = 0;
+        for (int i = 0; i< array2.Length;)
         {
-            for (int i = 0; i< array2.Length-1; i++)
-            {
-                array2[i] = array[i];
-            }
+            if (i == indp+1) { array2[i] = P; i++; }
+            else if (i < indp + 1) { array2[i] = array[i]; i++; }
+            else { array2[i] = array[i - 1]; }
         }
-        array2[array.Length] = P;
-        // end
 
         return array2;
     }
