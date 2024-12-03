@@ -757,6 +757,7 @@ public class Program
         double globalMax = 0, globalMin = 0;
 
         // code here
+        globalMax = Double.MinValue; globalMin = Double.MaxValue;
         X = new double[n]; Y = new double[n];
         double s = (b - a) / (n - 1);
         int k = 0;
