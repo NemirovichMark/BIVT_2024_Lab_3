@@ -980,11 +980,45 @@ return array;
 }
 public double[] Task_3_13(double[] array)
 {
-// code here
+        // code here
+        int n = 0; int p = 0;
+        double[] nov = new double[array.Length];
+        for (int i = 0; i < array.Length; i++)
+        {
+            bool d = true;
+            for (int j = 0; j < nov.Length; j++)
+            {
+                if (array[i] == nov[j])
+                {
+                    d = false;
+                }
+            }
+            if (d == true)
+            {
+                nov[i] = array[i];
+            }
+        }
+        for (int i = 0; i < nov.Length; i++)
+        {
+            if (nov[i] == 0 && nov[i] != array[i])
+            {
+                n++;
+            }
+        }
+        double[] res = new double[nov.Length - n];
 
-// end
+        for (int i = 0; i < nov.Length; i++)
+        {
+            if (nov[i] == array[i])
+            {
+                res[p] = nov[i];
+                p++;
+            }
+        }
+        array = res;
+        // end
 
-return array;
+        return array;
 }
 public double[] Task_3_14(double[] array)
 {
