@@ -952,14 +952,64 @@ public class Program
     public (double[], double[], double, double) Task_3_11(double a, double b, int n)
     {
         double[] X = null, Y = null;
-        double globalMax = 0, globalMin = 0;
+        double globalMax = double.NegativeInfinity, globalMin = double.PositiveInfinity;
 
         // code here
+        X = new double[n];
+        Y = new double[n];
+        int j = 0;
         
-        // end
+        
+        for (double i = a; i <= b; i += ((b-a) / (n-1)))
+        {
+            X[j] = Math.Round(i, 2);
+            Y[j] = Math.Round(Math.Cos(i) + i*Math.Sin(i), 2);
+            j++;
+        }
 
-        return (X, Y, globalMax,globalMin);
-    }
+        if (Y[0] < globalMin)
+        {
+            globalMin = Y[0];
+        }
+        if (Y[0] > globalMax)
+        {
+            globalMax = Y[0];
+
+        }
+        if (Y[n - 1] < globalMin)
+        {
+            globalMin = Y[n - 1];
+        }
+        if (Y[n - 1] > globalMax)
+        {
+            globalMax = Y[n - 1];
+        }
+
+
+            for (int i = 1; i <= n - 2; i++)
+            {
+                if ((Y[i] > Y[i - 1]) && (Y[i] > Y[i + 1]))
+                {
+                    Console.WriteLine("x = " + X[i] + ", " + "y = " + Y[i] + ", максимум");
+                    if (Y[i] > globalMax)
+                    {
+                        globalMax = Y[i];
+                    }
+                }
+                if ((Y[i] < Y[i - 1]) && (Y[i] < Y[i + 1]))
+                {
+                    Console.WriteLine("x = " + X[i] + ", " + "y = " + Y[i] + ", минимум");
+                    if (Y[i] < globalMin)
+                    {
+                        globalMin = Y[i];
+                    }
+                }
+            }
+
+            // end
+
+            return (X, Y, globalMax, globalMin);
+        }
     public double[] Task_3_12(double[] array)
     {
         // code here
