@@ -1031,7 +1031,24 @@ public class Program
         double[] normalizedArray = null;
 
         // code here
-
+        normalizedArray = new double[array.Length];
+        double max = double.NegativeInfinity;
+        double min = double.PositiveInfinity;
+        foreach (double i in array)
+        {
+            if (i > max)
+            {
+                max = i;
+            }
+            if (i < min)
+            {
+                min = i;
+            }
+        }
+        for (int i = 0; i <= array.Length- 1; i++)
+        {
+            normalizedArray[i] = (array[i] - min) * 2/(max - min) - 1;
+        }
         // end
 
         return normalizedArray;
