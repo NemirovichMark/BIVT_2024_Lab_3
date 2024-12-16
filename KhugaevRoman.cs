@@ -600,9 +600,7 @@ public class Program
                 min = array[i];
             }
         }
-        if (i_minus == -1)
-            return 0;
-        if (i_minus >= i_min)
+        if ((i_minus >= i_min) || (i_minus == -1))
             for (int i = 1; i < array.Length; i+=2)
                 sum += array[i];
         else
