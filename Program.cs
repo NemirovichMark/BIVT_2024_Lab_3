@@ -359,22 +359,22 @@ public class Program
         int indmin = Math.Min(ind1, ind2);
         int indmax = Math.Max(ind1, ind2);
         //double[] array1 = new double[indmax];
-        p = 0;
+        int k = 0;
         for (int i = indmin; i <= indmax; i++)
         {
             if ((array[i] < 0))
             {
-                p++;
+                k++;
             }
         }
-        double[] array1 = new double[p];
-        p = 0;
+        double[] array1 = new double[k];
+        k = 0;
         for (int i = indmin; i <= indmax; i++)
         {
             if ((array[i] < 0))
             {
-                array1[p] = array[i];
-                p++;
+                array1[k] = array[i];
+                k++;
             }
 
         }
@@ -482,7 +482,7 @@ public class Program
                 array1[i1] = P;
                 i1++;
             }
-            array[i1] == array[i2];
+            array[i1] = array[i2];
             i1++;
             i2++;
         }
@@ -697,10 +697,12 @@ public class Program
         double n = array.Length;
         for (int i = 0; i < n; i++)
         {
-            if ((array[i] > ma)) {
+            if ((array[i] > ma))
+            {
                 ind = i;
                 ma = array[i];
             }
+        }
             double p = 0;
             for (int i = 0; i < (ind - 1); i = i + 2)
             {
@@ -736,7 +738,7 @@ public class Program
                 if ((array[i] > array[i + 1]))
                 {
                     k++;
-                    count = Math.Max(k,count);
+                    count = Math.Max(k, count);
                 }
                 else
                 {
@@ -745,36 +747,36 @@ public class Program
             }
 
 
-    
-   
 
-            
 
-        // code here
 
-        // end
 
-        return count;
-    }
-    public double[] Task_3_7(double[] array)
-    {
-        // code here
 
-        // end
+            // code here
 
-        return array;
-    }
-    public double[] Task_3_8(double[] array)
-    {
-        // code here
+            // end
 
-        // end
+            return count;
+        }
+        public double[] Task_3_7(double[] array)
+        {
+            // code here
 
-        return array;
-    }
-    public int Task_3_9(double[] array)
-    {
-        int count = 0;int k = 0;int pred = 0;
+            // end
+
+            return array;
+        }
+        public double[] Task_3_8(double[] array)
+        {
+            // code here
+
+            // end
+
+            return array;
+        }
+        public int Task_3_9(double[] array)
+        {
+            int count = 0; int k = 0; int pred = 0;
             for (int i = 0; i < array.Length; i++)
             {
                 if ((array[i] > array[i + 1]))
@@ -802,33 +804,33 @@ public class Program
                 }
             }
             // code here
-            count = Math.Max(count,pred);
+            count = Math.Max(count, pred);
             // end
 
             return count;
-    }
-    public double[] Task_3_10(double[] array)
-    {
-        // code here
+        }
+        public double[] Task_3_10(double[] array)
+        {
+            // code here
 
-        // end
+            // end
 
-        return array;
-    }
-    public (double[], double[], double, double) Task_3_11(double a, double b, int n)
-    {
-        double[] X = null, Y = null;
-        double globalMax = 0, globalMin = 0;
+            return array;
+        }
+        public (double[], double[], double, double) Task_3_11(double a, double b, int n)
+        {
+            double[] X = null, Y = null;
+            double globalMax = 0, globalMin = 0;
 
-        // code here
+            // code here
 
-        // end
+            // end
 
-        return (X, Y, globalMax, globalMin);
-    }
-    public double[] Task_3_12(double[] array)
-    {
-        int len = array.Length;
+            return (X, Y, globalMax, globalMin);
+        }
+        public double[] Task_3_12(double[] array)
+        {
+            int len = array.Length;
             int count = 0;
             for (int i = 0; i < len; i++)
             {
@@ -849,31 +851,32 @@ public class Program
                 }
                 i1++;
             }
-         
 
 
 
-        // end
 
-        return array1;
-    }
-    public double[] Task_3_13(double[] array)
-    {
-        // code here
+            // end
 
-        // end
+            return array1;
+        }
+        public double[] Task_3_13(double[] array)
+        {
+            // code here
 
-        return array;
-    }
-    public double[] Task_3_14(double[] array)
-    {
-        double[] normalizedArray = null;
+            // end
 
-        // code here
+            return array;
+        }
+        public double[] Task_3_14(double[] array)
+        {
+            double[] normalizedArray = null;
 
-        // end
+            // code here
 
-        return normalizedArray;
-    }
-    #endregion
-}
+            // end
+
+            return normalizedArray;
+        }
+        #endregion
+    } 
+
